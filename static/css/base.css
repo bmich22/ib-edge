@@ -7,7 +7,8 @@ body {
     background-size: cover;
     height: calc(100vh - 164px); */
     color: #555;
-    font-family: 'Merriweather Sans';
+    font-family: 'Merriweather Sans', serif;
+    letter-spacing: 0.04em;
 }
 
 /* from Bulma */
@@ -24,12 +25,16 @@ body {
     font-weight: 800;
 }
 
-.text-blue {
+.logo-ib {
     color:blue;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
-.text-orange {
+.logo-edge {
     color:orange;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .main-logo-link {
