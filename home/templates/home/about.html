@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <h1 class="mb-4 text-center">About Us</h1>
+      <p class="lead text-center">
+        We’re two college students dedicated to helping IB Diploma students succeed.
+        One of us specializes in English and essay writing, while the other focuses on Math and Physics.
+      </p>
+      <p class="mt-4">
+        Our goal is to make IB less stressful by offering clear, focused tutoring support that’s personalized to your strengths and goals.
+        Whether you need help with exam prep, IA brainstorming, or improving your coursework, we're here to support your success.
+      </p>
+      <p class="mt-4 text-center">
+        <a href="{% url 'account_signup' %}" class="btn btn-primary">Get Started</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

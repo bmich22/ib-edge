@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <h2 class="mb-4 text-center">Contact Details</h2>
+      <p class="mt-4 text-center">
+        Contact Form, message goes into database and to site-admin by email
+      </p>
+      <p class="mt-4 text-center text-uppercase">
+        <a href="{% url 'home' %}" class="btn btn-primary">home page</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
