@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2>My Profile</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+  {% if user.userprofile.package %}
+    <hr>
+    <h4 class="mt-4">My Tutoring Package</h4>
+    <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
+    <p><strong>Sessions:</strong> {{ user.userprofile.package.num_sessions }}</p>
+    <p><strong>Assigned:</strong> {{ user.userprofile.package_assigned_date|date:"M d, Y" }}</p>
+    <p><strong>Used:</strong> {{ user.userprofile.sessions_used }}</p>
+    <p><strong>Remaining:</strong> {{ user.userprofile.sessions_remaining }}</p>
+  {% else %}
+    <p class="mt-4 text-muted">No tutoring package assigned yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
