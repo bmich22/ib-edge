@@ -27,8 +27,8 @@ def user_profile(request):
     show_form = is_editing or not profile.subjects.exists() or not profile.parent_email
 
     return render(request, 'user_profiles/user_profile.html', {
-    'form': form,
-    'show_form': show_form,
-    'is_editing': is_editing,
-    'profile': profile,
+        'form': form,
+        'show_form': show_form,
+        'is_editing': is_editing,
+        'profile': profile,
 })
