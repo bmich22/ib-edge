@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-  <h2 class="mb-4">Tutoring Packages - new page with three package details</h2>
+  <h2 class="mb-4">IB Edge Tutoring Packages</h2>
   <!-- Enable site admins to add packages from front end -->
   {% if request.user.is_staff %}
     <div class="mb-4">
@@ -24,13 +24,8 @@
             </ul>
             <p class="mt-2"><strong>Ideal for:</strong> {{ package.ideal_for }}</p>
             <p><strong>Price:</strong> ${{ package.price }}</p>
-
             <!-- Buy Now button -->
-            <form method="post" action="{% url 'start_checkout' package.id %}">
-              {% csrf_token %}
-              <button class="btn btn-primary mt-2 w-100">Buy Now</button>
-            </form>
-             <!-- Enable site admins to edit/delete packages from front end -->
+            <!-- Enable site admins to edit/delete packages from front end -->
             {% if request.user.is_staff %}
               <a href="{% url 'edit_package' package.id %}" class="btn btn-warning btn-sm mt-2">Edit</a>
               <a href="{% url 'delete_package' package.id %}" class="btn btn-danger btn-sm mt-2">Delete</a>
