@@ -1,22 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-  <h2>My Profile</h2>
+    <h2>My Profile</h2>
+    {% if show_form %}
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Save Changes</button>
+
+    {% if is_editing %}
+      <a href="{% url 'user_profile' %}" class="btn btn-secondary">Cancel</a>
+    {% endif %}
   </form>
-  {% if user.userprofile.package %}
-    <hr>
-    <h4 class="mt-4">My Tutoring Package</h4>
-    <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
-    <p><strong>Sessions:</strong> {{ user.userprofile.package.num_sessions }}</p>
-    <p><strong>Assigned:</strong> {{ user.userprofile.package_assigned_date|date:"M d, Y" }}</p>
-    <p><strong>Used:</strong> {{ user.userprofile.sessions_used }}</p>
-    <p><strong>Remaining:</strong> {{ user.userprofile.sessions_remaining }}</p>
-  {% else %}
-    <p class="mt-4 text-muted">No tutoring package assigned yet.</p>
-  {% endif %}
+{% else %}
+  <p>Your profile is up to date.</p>
+  <a href="{% url 'user_profile' %}?edit=1" class="btn btn-outline-primary mt-3">Edit Profile</a>
+{% endif %}
+<hr>
+<h4 class="mt-4">Welcome, {{ user.first_name|default:user.username }}!</h4>
+
+{% if user.userprofile.package %}
+  <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
+  <p><strong>Sessions Purchased:</strong> {{ user.userprofile.package.num_sessions }}</p>
+  <p><strong>Sessions Used:</strong> {{ user.userprofile.sessions_used }}</p>
+  <p><strong>Sessions Remaining:</strong> {{ user.userprofile.sessions_remaining }}</p>
+{% else %}
+  <p class="text-warning">You don’t have a tutoring package yet.</p>
+{% endif %}
+
+<hr>
+<p>Book your tutoring sessions here:</p>
+{% if user.userprofile.sessions_remaining > 0 %}
+<h5 class="mt-4">Book Your Next Session</h5>
+    <a href="https://calendly.com/" class="btn btn-outline-primary" target="_blank">
+        Link to Tutor's schedule
+    </a>
+{% else %}
+    <p class="text-muted">You have 0 sessions. </p>
+{% endif %}
 </div>
 {% endblock %}
