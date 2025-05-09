@@ -25,6 +25,16 @@
             <p class="mt-2"><strong>Ideal for:</strong> {{ package.ideal_for }}</p>
             <p><strong>Price:</strong> ${{ package.price }}</p>
             <!-- Buy Now button -->
+            {% if user.is_authenticated %}
+              <form method="post" action="{% url 'start_checkout' package.id %}">
+                {% csrf_token %}
+                <button class="btn btn-primary mt-2 w-100">Buy Now</button>
+              </form>
+            {% else %}
+              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-primary mt-2 w-100">
+                Login to Buy
+              </a>
+              {% endif %}
             <!-- Enable site admins to edit/delete packages from front end -->
             {% if request.user.is_staff %}
               <a href="{% url 'edit_package' package.id %}" class="btn btn-warning btn-sm mt-2">Edit</a>

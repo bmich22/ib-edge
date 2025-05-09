@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "reviews",
     "faq",
     "contact",
+    "user_profiles",
 ]
 
 MIDDLEWARE = [
