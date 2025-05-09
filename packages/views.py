@@ -7,12 +7,8 @@ from .models import Package
 def packages(request):
     """ A view to return the packages page """
     
-    return render(request, 'packages/packages.html')
-
-
-def package_list(request):
     packages = Package.objects.all()
-    return render(request, 'packages/package_list.html', {'packages': packages})
+    return render(request, 'packages/packages.html', {'packages': packages})
 
 
 
