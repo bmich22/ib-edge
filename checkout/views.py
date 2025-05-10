@@ -9,6 +9,7 @@ from .forms import ParentEmailForm
 from packages.models import Package
 from user_profiles.models import UserProfile
 from django.utils import timezone
+from datetime import timedelta
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -79,6 +80,7 @@ def checkout_success(request):
         purchased_package = profile.package  # fallback if already assigned
 
     profile.package_assigned_date = timezone.now()
+    expiration_date = timezone.now() + timedelta(weeks=8)
 
     if parent_email:
         profile.parent_email = parent_email
@@ -89,7 +91,10 @@ def checkout_success(request):
         send_mail(
             subject='Tutoring Package Confirmation',
             message=f"Thank you for purchasing the {purchased_package.name} package. "
-                    f"Your student now has {purchased_package.num_sessions} sessions available.",
+                    f"You card has been charged {purchased_package.price}. "        
+                    f"Your student now has {purchased_package.num_sessions} sessions available. "
+                    f"These sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
+                    "Students should log in to their student profile to book sessions.",
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[parent_email],
             fail_silently=False,
