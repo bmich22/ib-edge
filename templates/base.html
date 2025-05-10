@@ -102,17 +102,29 @@
       </nav>
       {% if user.is_authenticated %}
       <div class="bg-secondary-subtle border-bottom py-2">
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container d-flex align-items-center flex-wrap gap-2">
+        <!-- <div class="d-flex align-items-center flex-wrap gap-2"> -->
+          <span>
+            Welcome, <strong>{{ user.first_name|default:user.username }}</strong>
+          </span>
+          <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary">
+            Edit Profile
+          </a>
+          <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success">
+            Browse Packages
+          </a>
+        </div>
+        <!-- <div class="container d-flex justify-content-between align-items-center">
           <div>
             <span class="me-2">👋 Welcome, <strong>{{ user.first_name|default:user.username }}</strong></span>
-            <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-primary">View Profile</a>
-          </div>
+            <a href="{% url 'user_profile' %}?edit=1" class="btn btn-outline-primary mt-3">View/Edit Profile</a>
+          </div> -->
+      {% endif %}
           <!-- <div>
             <a href="{% url 'account_logout' %}" class="btn btn-sm btn-outline-danger">Log Out</a>
           </div> -->
         </div>
       </div>
-    {% endif %} 
     <!-- </header> -->
     {% if messages %}
     <div class="message-container"></div>

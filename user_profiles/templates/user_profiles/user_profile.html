@@ -14,10 +14,9 @@
   </form>
 {% else %}
   <p>Your profile is up to date.</p>
-  <a href="{% url 'user_profile' %}?edit=1" class="btn btn-outline-primary mt-3">Edit Profile</a>
 {% endif %}
 <hr>
-<h4 class="mt-4">Welcome, {{ user.first_name|default:user.username }}!</h4>
+<!-- <h4 class="mt-4">Welcome, {{ user.first_name|default:user.username }}!</h4> -->
 
 {% if user.userprofile.package %}
   <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
