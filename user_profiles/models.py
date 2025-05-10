@@ -15,11 +15,14 @@ class Subject(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+    grade_year = models.CharField(max_length=20, blank=True)  # Example: "Year 11", "IB2"
     parent_email = models.EmailField(blank=True, null=True)
     package = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True, blank=True)
-    subjects = models.ManyToManyField(Subject, blank=True)
+    subjects = models.ManyToManyField('Subject', blank=True)
     package_assigned_date = models.DateTimeField(null=True, blank=True)
-    sessions_used = models.PositiveIntegerField(default=0)  # ✅ Add this field
+    sessions_used = models.PositiveIntegerField(default=0)
 
     def sessions_remaining(self):
         if self.package:
