@@ -18,13 +18,18 @@
 <hr>
 <!-- <h4 class="mt-4">Welcome, {{ user.first_name|default:user.username }}!</h4> -->
 
-{% if user.userprofile.package %}
-  <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
-  <p><strong>Purchased On:</strong> {{ user.userprofile.package_assigned_date|date:"F j, Y" }}</p>
-  <p><strong>Expire On:</strong> {{ user.userprofile.package_assigned_date|date:"F j, Y" }}</p>
-  <p><strong>Sessions Purchased:</strong> {{ user.userprofile.package.num_sessions }}</p>
-  <p><strong>Sessions Used:</strong> {{ user.userprofile.sessions_used }}</p>
-  <p><strong>Sessions Remaining:</strong> {{ user.userprofile.sessions_remaining }}</p>
+{% if purchases %}
+  <h4 class="mt-4">Your Tutoring Packages</h4>
+  {% for purchase in purchases %}
+    <div class="border p-3 mb-3 rounded">
+      <p><strong>Package:</strong> {{ purchase.package.name }}</p>
+      <p><strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F j, Y" }}</p>
+      <p><strong>Expires On:</strong> {{ purchase.expires_on|date:"F j, Y" }}</p>
+      <p><strong>Sessions Purchased:</strong> {{ purchase.package.num_sessions }}</p>
+      <p><strong>Sessions Used:</strong> {{ purchase.sessions_used }}</p>
+      <p><strong>Sessions Remaining:</strong> {{ purchase.sessions_remaining }}</p>
+    </div>
+  {% endfor %}
 {% else %}
   <p class="text-warning">You don’t have a tutoring package yet.</p>
 {% endif %}

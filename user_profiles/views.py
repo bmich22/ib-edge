@@ -3,13 +3,14 @@ from django.shortcuts import render, redirect
 from .models import UserProfile
 from .forms import UserProfileForm
 from django.contrib import messages
+from checkout.models import Purchase
 
 @login_required
 def user_profile(request):
     # Ensure the profile exists
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
-    # ✅ Superusers skip the form
+    # Superusers skip the form
     if request.user.is_superuser:
         return render(request, 'user_profiles/admin_dashboard.html')
 
@@ -23,12 +24,16 @@ def user_profile(request):
         messages.success(request, "Your profile was updated successfully!")
         return redirect('user_profile')
 
-    # Show form if it's missing key info OR user clicked "Edit"
+    # Show form if it's missing key info OR user clicked to edit form
     show_form = is_editing or not profile.subjects.exists() or not profile.parent_email
+
+    # Get user's purchases, newest first
+    purchases = Purchase.objects.filter(user=request.user).order_by('-purchased_on')
 
     return render(request, 'user_profiles/user_profile.html', {
         'form': form,
         'show_form': show_form,
         'is_editing': is_editing,
         'profile': profile,
+        'purchases': purchases,
 })
