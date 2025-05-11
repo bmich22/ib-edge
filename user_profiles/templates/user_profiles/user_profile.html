@@ -21,6 +21,7 @@
 {% if user.userprofile.package %}
   <p><strong>Package:</strong> {{ user.userprofile.package.name }}</p>
   <p><strong>Purchased On:</strong> {{ user.userprofile.package_assigned_date|date:"F j, Y" }}</p>
+  <p><strong>Expire On:</strong> {{ user.userprofile.package_assigned_date|date:"F j, Y" }}</p>
   <p><strong>Sessions Purchased:</strong> {{ user.userprofile.package.num_sessions }}</p>
   <p><strong>Sessions Used:</strong> {{ user.userprofile.sessions_used }}</p>
   <p><strong>Sessions Remaining:</strong> {{ user.userprofile.sessions_remaining }}</p>
