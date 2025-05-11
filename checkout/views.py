@@ -103,20 +103,37 @@ def checkout_success(request):
         profile.parent_email = parent_email
         profile.save()
 
+        # Get student name from profile
+        student_name = f"{profile.first_name} {profile.last_name}".strip() or request.user.username
+
         # Send confirmation email
+        subject='Tutoring Package Confirmation',
+        message=(
+            f"Thank you for purchasing the {purchased_package.name} package.\n"
+            f"Your card has been charged ${purchased_package.price:.2f}.\n"
+            f"{student_name} now has {purchased_package.num_sessions} sessions available.\n"
+            f"These sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
+            "Students can log in to their profile to track or book sessions."
+        )
+
+        # Send to parent    
         send_mail(
-            subject='Tutoring Package Confirmation',
-            message=(
-                f"Thank you for purchasing the {purchased_package.name} package.\n"
-                f"Your card has been charged ${purchased_package.price:.2f}.\n"
-                f"Your student now has {purchased_package.num_sessions} sessions available.\n"
-                f"These sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
-                "Students can log in to their profile to track or book sessions."
-            ),
+            subject=subject,
+            message=message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[parent_email],
             fail_silently=False,
         )
+
+        # Send to student if email is different than parent
+        if request.user.email and request.user.email != parent_email:    
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[parent_email],
+                fail_silently=False,
+            )
 
     return render(request, 'checkout/checkout_success.html', {
         'package': purchased_package,
