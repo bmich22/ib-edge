@@ -8,6 +8,7 @@ import stripe
 from .forms import ParentEmailForm
 from packages.models import Package
 from user_profiles.models import UserProfile
+from checkout.models import Purchase
 from django.utils import timezone
 from datetime import timedelta
 
@@ -44,9 +45,11 @@ def start_checkout(request, package_id):
     if not parent_email:
         return redirect('who_is_paying', package_id=package.id)
     
+    # Store package info for success view
     request.session['purchased_package_id'] = package.id
     request.session.modified = True
 
+    # Create Stripe Checkout session
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
@@ -63,38 +66,53 @@ def start_checkout(request, package_id):
         customer_email=parent_email,
     )
 
+    # Store Stripe metadata for confirmation
+    request.session['stripe_checkout_id'] = session.id
+    request.session['stripe_payment_intent'] = session.payment_intent
+
     return redirect(session.url, code=303)
 
 
 @login_required
 def checkout_success(request):
-    profile = request.user.userprofile
+    user = request.user
+    profile = user.userprofile
     parent_email = request.session.pop('parent_email', None)
     package_id = request.session.pop('purchased_package_id', None)
+    stripe_checkout_id = request.session.pop('stripe_checkout_id', None)
+    stripe_payment_intent = request.session.pop('stripe_payment_intent', None)
 
-    if package_id:
-        from packages.models import Package
-        purchased_package = get_object_or_404(Package, id=package_id)
-        profile.package = purchased_package
-    else:
-        purchased_package = profile.package  # fallback if already assigned
+    if not package_id:
+        return render(request, 'checkout/checkout_success.html')  # fallback
 
-    profile.package_assigned_date = timezone.now()
+    purchased_package = get_object_or_404(Package, id=package_id)
     expiration_date = timezone.now() + timedelta(weeks=8)
 
+    # Create a purchase record
+    Purchase.objects.create(
+        user=user,
+        package=purchased_package,
+        expires_on=expiration_date,
+        stripe_checkout_id=stripe_checkout_id,
+        stripe_payment_intent=stripe_payment_intent,
+        payment_status='paid',
+    )
+
+    # Save parent email to profile if provided
     if parent_email:
         profile.parent_email = parent_email
+        profile.save()
 
-    profile.save()
-    
-    if parent_email:
+        # Send confirmation email
         send_mail(
             subject='Tutoring Package Confirmation',
-            message=f"Thank you for purchasing the {purchased_package.name} package. "
-                    f"You card has been charged {purchased_package.price}. "        
-                    f"Your student now has {purchased_package.num_sessions} sessions available. "
-                    f"These sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
-                    "Students should log in to their student profile to book sessions.",
+            message=(
+                f"Thank you for purchasing the {purchased_package.name} package.\n"
+                f"Your card has been charged ${purchased_package.price:.2f}.\n"
+                f"Your student now has {purchased_package.num_sessions} sessions available.\n"
+                f"These sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
+                "Students can log in to their profile to track or book sessions."
+            ),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[parent_email],
             fail_silently=False,
