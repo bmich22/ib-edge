@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "contact",
     "user_profiles",
     "checkout",
+    "tutoring_sessions",
 ]
 
 MIDDLEWARE = [

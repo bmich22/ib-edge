@@ -6,10 +6,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from packages.models import Package
 
+
 class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='purchases')
     package = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
-    sessions_used = models.PositiveIntegerField(default=0)
     purchased_on = models.DateTimeField(auto_now_add=True)
     expires_on = models.DateTimeField(null=True, blank=True)
 
