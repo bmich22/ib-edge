@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h2>My Profile</h2>
+    <h3>My Profile</h3>
     {% if show_form %}
   <form method="post">
     {% csrf_token %}
@@ -18,38 +18,76 @@
 <hr>
 
 {% if purchases %}
-  <h4 class="mt-4">You have {{ total_sessions_available }} sessions available.</h4>
-  <p><strong>Sessions Used:</strong></p>
-  <ul class="list-group mb-4">
-    {% for session in sessions %}
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        {{ session.session_datetime|date:"F j, Y, g:i A" }}
-        <small class="text-muted">Logged by {{ session.logged_by.get_full_name|default:session.logged_by.username }}</small>
-      </li>
-    {% endfor %}
-  </ul>
-  <h4 class="mt-4">Your Purchases</h4>
-  {% for purchase in purchases %}
-    <div class="border p-3 rounded">
-      <p><strong>Package:</strong> {{ purchase.package.name }}</p>
-      <p><strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F j, Y" }}</p>
-      <p><strong>Expires On:</strong> {{ purchase.expires_on|date:"F j, Y" }}</p>
-      <p><strong>Sessions Purchased:</strong> {{ purchase.package.num_sessions }}</p>
+  <div class="row mt-4">
+    
+    <!-- Column 1: Total Sessions Available -->
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Sessions Available</h5>
+          <p class="display-6 text-primary">{{ total_sessions_available }}</p>
+          <p>Book your tutoring sessions here:</p>
+          {% if total_sessions_available > 0 %}
+            <a href="https://calendly.com/" class="btn btn-outline-primary" target="_blank">
+            Book Session
+            </a>
+          {% else %}
+            <p class="text-muted">You have {{ total_sessions_available }} sessions remaining.</p>
+          {% endif %}
+        </div>
+
+        </div>
+      </div>
+
+    <!-- Column 2: Sessions Used -->
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Sessions Used</h5>
+          {% if sessions %}
+            <div style="max-height: 300px; overflow-y: auto;">
+              <ul class="list-group list-group-flush">
+                {% for session in sessions %}
+                  <li class="list-group-item fs-75 py-0">
+                    <div><strong>{{ session.session_datetime|date:"F j, Y, g:i A" }}</strong></div>
+                    <small class="text-muted">Logged by {{ session.logged_by.get_full_name|default:session.logged_by.username }}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% else %}
+            <p class="text-muted">No sessions used yet.</p>
+          {% endif %}
+        </div>
+      </div>
     </div>
-  {% endfor %}
+
+    <!-- Column 3: Purchased Packages -->
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Your Purchases</h5>
+          {% if purchases %}
+            <div style="max-height: 300px; overflow-y: auto;">
+              {% for purchase in purchases %}
+                <div class="mb-3">
+                  <p class="mb-1 fs-75"><strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F j, Y" }}</p>
+                  <p class="mb-1 fs-75"><strong>Package:</strong> {{ purchase.package.name }}</p>
+                  <p class="mb-1 fs-75"><strong>Sessions Purchased:</strong> {{ purchase.package.num_sessions }}</p>
+                  <p class="mb-1 fs-75"><strong>Expires On:</strong> {{ purchase.expires_on|date:"F j, Y" }}</p>
+                 <hr>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="text-muted">No packages found.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
 {% else %}
   <p class="text-warning">You don’t have a tutoring package yet.</p>
 {% endif %}
-
-<!-- <hr>
-<p>Book your tutoring sessions here:</p>
-{% if total_sessions_available > 0 %}
-<h5 class="mt-4">Book Your Next Session</h5>
-    <a href="https://calendly.com/" class="btn btn-outline-primary" target="_blank">
-        Link to Tutor's schedule
-    </a>
-{% else %}
-    <p class="text-muted">You have {{ total_sessions_available }} sessions remaining.</p>
-{% endif %} -->
-</div>
 {% endblock %}
