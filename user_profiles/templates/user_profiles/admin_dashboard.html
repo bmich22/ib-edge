@@ -4,9 +4,9 @@
   <h2>Admin Dashboard</h2>
   <p>Welcome, {{ user.username }}. You are a superuser.</p>
   <ul>
-    <li><a href="/admin/">Go to Django Admin</a></li>
-    <li><a href="#">View All Profiles (Coming Soon)</a></li>
     <li><a href="{% url 'log_tutoring_session' %}">Log a Tutoring Session</a></li>
+    <li><a href="/admin/">Go to Site Admin</a></li>
+    <li><a href="{% url 'packages' %}">Add/Edit/Delete Packages</a></li>
   </ul>
 </div>
 {% endblock %}

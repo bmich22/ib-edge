@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from checkout.models import Purchase
+from tutoring_sessions.models import TutoringSession
+from django.db.models import Sum
 
 # Create your models here.
 
@@ -23,6 +26,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def get_total_sessions_available(self):
+        total_purchased = Purchase.objects.filter(user=self.user).aggregate(
+            total=Sum('package__num_sessions')
+        )['total'] or 0
+
+        total_logged = TutoringSession.objects.filter(user=self.user).count()
+
+        return max(0, total_purchased - total_logged)
 
 
 

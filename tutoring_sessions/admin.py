@@ -7,4 +7,4 @@ from .models import TutoringSession
 class TutoringSessionAdmin(admin.ModelAdmin):
     list_display = ('user', 'session_datetime', 'logged_by', 'logged_on')
     list_filter = ('session_datetime', 'logged_on')
-    search_fields = ('purchase__user__username', 'notes')
+    search_fields = ('user__username', 'notes')

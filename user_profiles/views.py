@@ -16,8 +16,6 @@ def user_profile(request):
         return render(request, 'user_profiles/admin_dashboard.html')
 
     is_editing = request.GET.get('edit') == '1'
-
-    # Regular users get the form
     form = UserProfileForm(request.POST or None, instance=profile)
 
     if request.method == 'POST' and form.is_valid():
@@ -25,14 +23,13 @@ def user_profile(request):
         messages.success(request, "Your profile was updated successfully!")
         return redirect('user_profile')
 
-    # Show form if it's missing key info OR user clicked to edit form
     show_form = is_editing or not profile.subjects.exists() or not profile.parent_email
 
-    # Get user's purchases, newest first
     purchases = Purchase.objects.filter(user=request.user).order_by('-purchased_on')
 
-    # Get user's logged sessions
-    sessions = TutoringSession.objects.filter(purchase__user=request.user).order_by('-session_datetime')
+    sessions = TutoringSession.objects.filter(user=request.user).order_by('-session_datetime')
+
+    total_sessions_available = profile.get_total_sessions_available()
 
     return render(request, 'user_profiles/user_profile.html', {
         'form': form,
@@ -40,4 +37,6 @@ def user_profile(request):
         'is_editing': is_editing,
         'profile': profile,
         'purchases': purchases,
+        'sessions': sessions,
+        'total_sessions_available': total_sessions_available,
 })
