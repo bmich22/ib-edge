@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class TutoringSession(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=4, related_name='tutoring_sessions')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tutoring_sessions')
     session_datetime = models.DateTimeField()
     notes = models.TextField(blank=True)
     logged_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='logged_sessions')

@@ -23,12 +23,12 @@ def log_tutoring_session(request):
                 logged_by=request.user
             )
 
-            # Decrement session count
+            # Update number of total sessions available
             profile = student.userprofile
             profile.total_sessions_available = max(0, profile.total_sessions_available - 1)
             profile.save()
 
-            messages.success(request, f"Session logged for {student.get_full_name() or student.username}.")
+            messages.success(request, f"Session logged for {student.username}")
             return redirect('log_tutoring_session')
     else:
         form = LogSessionForm()
