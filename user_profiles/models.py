@@ -20,6 +20,7 @@ class UserProfile(models.Model):
     grade_year = models.CharField(max_length=20, blank=True)  # Example: "Year 11", "IB2"
     parent_email = models.EmailField(blank=True, null=True)
     subjects = models.ManyToManyField('Subject', blank=True)
+    total_sessions_available = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.user.username

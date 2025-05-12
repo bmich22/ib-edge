@@ -4,6 +4,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.contrib import messages
 from checkout.models import Purchase
+from tutoring_sessions.models import TutoringSession
 
 @login_required
 def user_profile(request):
@@ -29,6 +30,9 @@ def user_profile(request):
 
     # Get user's purchases, newest first
     purchases = Purchase.objects.filter(user=request.user).order_by('-purchased_on')
+
+    # Get user's logged sessions
+    sessions = TutoringSession.objects.filter(purchase__user=request.user).order_by('-session_datetime')
 
     return render(request, 'user_profiles/user_profile.html', {
         'form': form,
