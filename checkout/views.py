@@ -98,6 +98,9 @@ def checkout_success(request):
         payment_status='paid',
     )
 
+    profile.total_sessions_available += purchased_package.num_sessions
+    profile.save()
+
     # Save parent email to profile if provided
     if parent_email:
         profile.parent_email = parent_email
