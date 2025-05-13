@@ -96,8 +96,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 ACCOUNT_AUTHENTICATION_METHOD = "email"   # or "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
@@ -168,13 +166,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'ib-edge@example.com')
+CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', DEFAULT_FROM_EMAIL)
+
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'ibedge@example.com'
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'ib-edge@example.com')
 
 else:
-    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST = 'smtp.gmail.com'

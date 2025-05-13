@@ -17,6 +17,14 @@ def contact(request):
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[settings.CONTACT_EMAIL],
         )
+        # Confirmation email to user
+        send_mail(
+            subject="Thanks for contacting us!",
+            message=f"Hi {contact.name},\n\nThanks for reaching out. We'll get back to you soon.\n\nYour message:\n{contact.message}",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[contact.email],
+        )
+
         return redirect('contact_success')
 
     return render(request, 'contacts/contact.html', {'form': form})
