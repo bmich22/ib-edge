@@ -112,7 +112,7 @@
           Welcome, <strong>{{ user.first_name|default:user.username }}</strong>
         </span>
 
-        {% if not user.is_superuser %}
+        {% if not user.is_superuser and not user.userprofile.is_tutor %}
           {% if total_sessions_available > 0 %}
             <a href="https://calendly.com/" class="btn btn-sm btn-outline-primary ms-auto" target="_blank">
               Book a Session

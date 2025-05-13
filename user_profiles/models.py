@@ -17,12 +17,21 @@ class Subject(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # All users
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
+
+    # Students
     grade_year = models.CharField(max_length=20, blank=True)  # Example: "Year 11", "IB2"
     parent_email = models.EmailField(blank=True, null=True)
     subjects = models.ManyToManyField('Subject', blank=True)
     total_sessions_available = models.PositiveIntegerField(default=0)
+
+    # Tutor-specific
+    is_tutor = models.BooleanField(default=False)
+    bio = models.TextField(blank=True)
+    calendly_url = models.URLField(blank=True)
 
     def __str__(self):
         return self.user.username

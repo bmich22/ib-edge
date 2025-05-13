@@ -50,9 +50,9 @@ INSTALLED_APPS = [
     "reviews",
     "faq",
     "contact",
-    "user_profiles",
     "checkout",
     "tutoring_sessions",
+    'user_profiles.apps.UserProfilesConfig',
 ]
 
 MIDDLEWARE = [

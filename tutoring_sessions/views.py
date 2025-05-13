@@ -1,14 +1,16 @@
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import LogSessionForm
-from user_profiles.models import UserProfile
-from tutoring_sessions.models import TutoringSession
+from .models import TutoringSession
 
-# Create your views here.
-
-@staff_member_required
+@login_required
 def log_tutoring_session(request):
+    # Only allow tutors or superusers to log sessions
+    if not (request.user.is_superuser or request.user.userprofile.is_tutor):
+        raise PermissionDenied("Only tutors can log sessions.")
+
     if request.method == 'POST':
         form = LogSessionForm(request.POST)
         if form.is_valid():
@@ -16,6 +18,7 @@ def log_tutoring_session(request):
             session_datetime = form.cleaned_data['session_datetime']
             notes = form.cleaned_data['notes']
 
+            # Create session record
             TutoringSession.objects.create(
                 user=student,
                 session_datetime=session_datetime,
@@ -23,7 +26,7 @@ def log_tutoring_session(request):
                 logged_by=request.user
             )
 
-            # Update number of total sessions available
+            # Decrement student session count
             profile = student.userprofile
             profile.total_sessions_available = max(0, profile.total_sessions_available - 1)
             profile.save()
