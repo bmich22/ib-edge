@@ -16,11 +16,7 @@ def user_profile(request):
         return render(request, 'user_profiles/admin_dashboard.html')
     elif request.user.userprofile.is_tutor:
         return render(request, 'user_profiles/tutor_dashboard.html')
-    # if request.user.is_superuser:
-    #     return render(request, 'user_profiles/admin_dashboard.html')
-    # elif profile.is_tutor:
-    #     return render(request, 'user_profiles/tutor_dashboard.html')
-
+    
     is_editing = request.GET.get('edit') == '1'
     form = UserProfileForm(request.POST or None, instance=profile)
 

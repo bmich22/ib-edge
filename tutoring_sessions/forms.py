@@ -1,10 +1,10 @@
 from django import forms
-from django.contrib.auth.models import User
+from user_profiles.models import UserProfile
 
 
 class LogSessionForm(forms.Form):
     student = forms.ModelChoiceField(
-        queryset=User.objects.filter(purchases__isnull=False).distinct(),
+        queryset=UserProfile.objects.filter(user__purchases__isnull=False).distinct().order_by('last_name', 'first_name'),
         label="Select Student",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
@@ -16,3 +16,7 @@ class LogSessionForm(forms.Form):
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         required=False
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['student'].label_from_instance = lambda profile: f"{profile.last_name}, {profile.first_name} ({profile.user.email})"
