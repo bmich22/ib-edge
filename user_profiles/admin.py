@@ -11,7 +11,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'is_tutor',
         'user_is_staff',
         'grade_year',
-        'subject_list',  # ✅ Add subjects
+        'subject_list', 
     )
     list_filter = ('is_tutor', 'user__is_staff', 'subjects')
     search_fields = (
@@ -44,3 +44,6 @@ class UserProfileAdmin(admin.ModelAdmin):
         return ", ".join(subject.name for subject in obj.subjects.all())
     subject_list.short_description = 'Subjects'
 
+@admin.register(Subject)
+class Subject(admin.ModelAdmin):
+    list_display = ('name',)

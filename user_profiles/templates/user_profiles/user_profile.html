@@ -1,7 +1,15 @@
 {% extends "base.html" %}
+{% load custom_filters %}
+
 {% block content %}
 <div class="container mt-5">
-    <h3>My Profile</h3>
+    <span>
+      <h4>Student:  <strong>{% if user.userprofile and user.userprofile.first_name and user.userprofile.last_name %}
+        {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}
+    {% else %}
+        {{ user.username }}
+    {% endif %}</strong>  </h4>
+    </span>
     {% if show_form %}
   <form method="post">
     {% csrf_token %}
@@ -26,8 +34,41 @@
         <div class="card-body text-center">
           <h5 class="card-title">Total Sessions Available</h5>
           <p class="display-6 text-primary">{{ total_sessions_available }}</p>
-          <p>Book your tutoring sessions here:</p>
-          {% if total_sessions_available > 0 %}
+          <!-- <p>Your subjects:  
+            {% for subject in user.userprofile.subjects.all %}
+              {{ subject.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              No subjects selected.
+            {% endfor %}
+          </p> -->
+          <!-- <p class="mb-0">Your subjects:  </p>
+          {% for subject in user.userprofile.subjects.all %}
+            <li class="list-unstyled mb-0">{{ subject.name }}</li>
+          {% empty %}
+            <li>No subjects selected.</li>
+          {% endfor %}
+          <p>Your tutor: {{ user.userprofile.subjects|assigned_tutor }}</p>
+          <p>Book your tutoring sessions with {{ user.userprofile.subjects|assigned_tutor }} here: </p>
+          {% if total_sessions_available > 0 %} -->
+          <p class="mb-0">Your subjects and tutors:</p>
+          <ul class="list-unstyled mb-0">
+            {% for subject in user.userprofile.subjects.all %}
+              <li class="mb-0">
+                {{ subject.name }} — 
+                {% with subject_tutors=subject.tutors.all %}
+                  {% if subject_tutors %}
+                    {% for tutor in subject_tutors %}
+                      {{ tutor.first_name }} {{ tutor.last_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                  {% else %}
+                    No tutor assigned
+                  {% endif %}
+                {% endwith %}
+              </li>
+            {% empty %}
+          <li>No subjects selected.</li>
+          {% endfor %}
+        </ul>
             <a href="https://calendly.com/" class="btn btn-outline-primary" target="_blank">
             Book Session
             </a>

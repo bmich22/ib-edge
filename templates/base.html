@@ -113,11 +113,6 @@
         </span>
 
         {% if not user.is_superuser and not user.userprofile.is_tutor %}
-          {% if total_sessions_available > 0 %}
-            <a href="https://calendly.com/" class="btn btn-sm btn-outline-primary ms-auto" target="_blank">
-              Book a Session
-            </a>
-          {% endif %}
           <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary">
             Edit Profile
           </a>
