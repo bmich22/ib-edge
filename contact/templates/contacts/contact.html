@@ -3,15 +3,48 @@
 {% block content %}
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-10 col-lg-8">
-      <h2 class="mb-4 text-center">Contact Details</h2>
-      <p class="mt-4 text-center">
-        Contact Form, message goes into database and to site-admin by email
-      </p>
-      <p class="mt-4 text-center text-uppercase">
-        <a href="{% url 'home' %}" class="btn btn-primary">home page</a>
-      </p>
-    </div>
+      <div class="col-md-8 col-lg-6">
+
+          {% if success %}
+              <div class="alert alert-success">
+                  <strong>Thank you!</strong> Your message has been sent.
+              </div>
+          {% endif %}
+
+          <div class="card shadow">
+              <div class="card-body">
+                  <h3 class="card-title mb-4">Contact Us</h3>
+
+                  <form method="post" novalidate>
+                      {% csrf_token %}
+                      {{ form.non_field_errors }}
+
+                      <div class="mb-3">
+                          {{ form.name.label_tag }}
+                          {{ form.name }}
+                          {{ form.name.errors }}
+                      </div>
+
+                      <div class="mb-3">
+                          {{ form.email.label_tag }}
+                          {{ form.email }}
+                          {{ form.email.errors }}
+                      </div>
+
+                      <div class="mb-3">
+                          {{ form.message.label_tag }}
+                          {{ form.message }}
+                          {{ form.message.errors }}
+                      </div>
+
+                      <button type="submit" class="btn btn-primary">Send Message</button>
+                  </form>
+
+              </div>
+          </div>
+
+      </div>
   </div>
 </div>
 {% endblock %}
+
