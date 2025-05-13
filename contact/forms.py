@@ -3,6 +3,13 @@ from .models import ContactMessage
 
 
 class ContactForm(forms.ModelForm):
+    # Honeypot field (form spam protection, not included in Meta)
+    bot_field = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput,
+        label="Leave empty"
+    )
+
     class Meta:
         model = ContactMessage
         fields = ['name', 'email', 'message']

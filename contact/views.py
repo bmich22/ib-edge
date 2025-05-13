@@ -7,17 +7,25 @@ from django.shortcuts import render, redirect
 
 
 def contact(request):
-    """ A view to display and process the contact form with email notification """
     form = ContactForm(request.POST or None)
+
     if form.is_valid():
+        if form.cleaned_data['bot_field']:
+            # Detected spam bot — do NOT save or send
+            return redirect('contact_success') 
+
+        # Legit user — process form
         contact = form.save()
+
+        # Admin notification
         send_mail(
             subject="New Contact Message",
             message=f"From {contact.name} <{contact.email}>:\n\n{contact.message}",
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[settings.CONTACT_EMAIL],
         )
-        # Confirmation email to user
+
+        # Confirmation to user
         send_mail(
             subject="Thanks for contacting us!",
             message=f"Hi {contact.name},\n\nThanks for reaching out. We'll get back to you soon.\n\nYour message:\n{contact.message}",
