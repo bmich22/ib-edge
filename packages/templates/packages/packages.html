@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-  <h2 class="mb-4">IB Edge Tutoring Packages</h2>
+  <h2 class="mb-4 text-primary">IB Edge Tutoring Packages</h2>
   <!-- Enable site admins to add packages from front end -->
   {% if request.user.is_staff %}
     <div class="mb-4">
@@ -12,10 +12,11 @@
     {% for package in packages %}
       <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">{{ package.name }}</h5>
+          <div class="card-body"; style="font-size: 0.8rem;">
+            <h5 class="card-title" style="min-height: 3rem;">{{ package.name }}</h5>
+            <hr>
             <p class="card-text">{{ package.description|truncatechars:100 }}</p>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled" style="min-height: 6rem;">
               {% if package.feature1 %}<li>✔ {{ package.feature1 }}</li>{% endif %}
               {% if package.feature2 %}<li>✔ {{ package.feature2 }}</li>{% endif %}
               {% if package.feature3 %}<li>✔ {{ package.feature3 }}</li>{% endif %}
@@ -32,7 +33,7 @@
               </form>
             {% else %}
               <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-primary mt-2 w-100">
-                Login to Buy
+                Sign up to Buy
               </a>
               {% endif %}
             <!-- Enable site admins to edit/delete packages from front end -->
