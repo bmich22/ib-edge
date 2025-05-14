@@ -18,19 +18,25 @@ def user_profile(request):
         return render(request, 'user_profiles/tutor_dashboard.html')
     
     is_editing = request.GET.get('edit') == '1'
-    form = UserProfileForm(request.POST or None, instance=profile)
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        messages.success(request, "Your profile was updated successfully!")
-        return redirect('user_profile')
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your profile was updated successfully!")
+            return redirect('user_profile')
+    else:
+        form = UserProfileForm(instance=profile)
 
-    show_form = is_editing or not profile.subjects.exists() or not profile.parent_email
+    # Check if the profile is incomplete
+    is_incomplete = not profile.subjects.exists() or not profile.parent_email
 
+    # Decide whether to show the form
+    show_form = is_editing or is_incomplete
+
+    # Fetch dashboard data
     purchases = Purchase.objects.filter(user=request.user).order_by('-purchased_on')
-
     sessions = TutoringSession.objects.filter(user=request.user).order_by('-session_datetime')
-
     total_sessions_available = profile.get_total_sessions_available()
 
     return render(request, 'user_profiles/user_profile.html', {

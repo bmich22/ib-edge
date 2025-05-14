@@ -23,7 +23,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=50, blank=True)
 
     # Students
-    grade_year = models.CharField(max_length=20, blank=True)  # Example: "Year 11", "IB2"
+    grade_year = models.CharField(max_length=20, blank=True)  # Example: "11", "IB2"
     parent_email = models.EmailField(blank=True, null=True)
     subjects = models.ManyToManyField('Subject', blank=True)
     total_sessions_available = models.PositiveIntegerField(default=0)

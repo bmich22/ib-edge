@@ -109,13 +109,16 @@
               {% endif %}
             </strong>
           </span>
-
+          
         {% if not user.is_superuser and not user.userprofile.is_tutor %}
-          <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary">
-            Show Profile
+          <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-success ms-3 me-3">
+            Student Dashboard
           </a>
-          <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success">
+          <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success me-3">
             Buy Package
+          </a>
+          <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary me-3">
+            Edit Personal Details
           </a>
         {% else %}
           <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-primary">
