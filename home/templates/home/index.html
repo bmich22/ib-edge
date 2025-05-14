@@ -3,26 +3,41 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h2 class="display-4 logo-font text-black">
-                    index.html
-                </h2>
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3 fw-bold">learn more</a>
-                    </h4>
-                </div>
-            </div>
+<section class="container header-container pt-4 pb-1">
+    <header class="py-3 text-center">
+          <h2 class="display-4 text-primary fw-bold">Unlock Your IB Potential</h2>
+          <p class="lead mb-0">Expert tutoring in English, Math, Physics, EE & TOK — available 7 days a week.</p>
+    </header>
+</section>
+<section class="bg-white py-4">
+    <div class="container d-flex flex-column align-items-center">
+        <h4 class="text-center mb-2">We tutor these IB Subjects:</h4>
+        <div class="w-100" style="max-width: 600px;">
+            <ul class="list-group list-group-flush text-center mb-0">
+                <li class="list-group-item pb-0">📘 English SL & HL</li>
+                <li class="list-group-item pb-0">📐 Math SL & HL</li>
+                <li class="list-group-item pb-0">🔬 Physics SL & HL</li>
+                <li class="list-group-item pb-0">📝 Extended Essay (EE)</li>
+                <li class="list-group-item pb-0">💭 Theory of Knowledge (TOK)</li>
+            </ul>
         </div>
     </div>
+</section>
+
+<section class="bg-light py-3">
+    <div class="container text-center">
+        <h5>Flexible Scheduling — 7 Days a Week</h5>
+        <p class="mb-0">Whether it's weekdays or weekends, we're here to support your IB journey.</p>
+        <div class="text-center my-2">
+        <h4>
+            <a href="#" class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-warning">
+            Learn More
+            </a>
+        </h4>
+        </div>
+    </div>
+</section>
 {% endblock %}

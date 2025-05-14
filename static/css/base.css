@@ -3,13 +3,18 @@ html {
 }
 
 body {
-    /* background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: calc(100vh - 164px); */
     color: #555;
     font-family: 'Merriweather Sans', serif;
     letter-spacing: 0.04em;
+    margin-bottom: 60px;
 }
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
 
 /* from Bulma */
 .icon {
@@ -18,23 +23,6 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
-}
-
-.logo-font {
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.logo-ib {
-    color:blue;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.logo-edge {
-    color:orange;
-    text-transform: uppercase;
-    font-weight: 800;
 }
 
 .main-logo-link {

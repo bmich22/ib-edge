@@ -57,14 +57,11 @@
     </title>
   </head>
   <body>
-    <!-- <header class="container-fluid px-3"> -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
         <div class="container-fluid">
-          <!-- Logo on the left -->
           <h1 class="navbar-brand mb-0 fs-2">
             <a href="{% url 'home' %}" class="text-decoration-none">
-              <span class="logo-ib">IB</span><span class="logo-edge">Edge</span>
-            </a>
+              <span class="text-white text-uppercase fw-bold">IB </span><span class="text-warning text-uppercase fw-bold">Edge</span>
           </h1>
           <!-- Navigation links -->
           <div class="collapse navbar-collapse" id="mainNavbar">
@@ -97,7 +94,7 @@
                     <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                   </li>
                   <li class="d-flex">
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary ms-2">
+                    <a href="{% url 'account_signup' %}" class="btn btn-warning ms-2">
                       Sign Up
                     </a>
                   </li>
@@ -109,12 +106,12 @@
         <div class="bg-secondary-subtle border-bottom py-2">
         <div class="container align-items-center flex-wrap gap-2">
         <span>
-          Welcome, <strong>{{ user.first_name|default:user.username }}</strong>
+          Welcome, <strong>{{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
         </span>
 
         {% if not user.is_superuser and not user.userprofile.is_tutor %}
           <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary">
-            Edit Profile
+            Show Profile
           </a>
           <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success">
             Buy Package
@@ -138,4 +135,13 @@
     {% block postloadjs %}
     {% endblock %}
   </body>
+<!-- Footer -->
+<footer class="bg-primary text-light mt-auto text-center py-3 fixed-footer" role="contentinfo">
+  <p class="m-0 text-center text-white"><i class="fa-regular fa-copyright fa-xs"></i> IB EDGE | Follow us:
+    <i class="fa-brands fa-facebook ms-3" href="" aria-label="Follow us on Facebook"></i>
+    <i class="fa-brands fa-square-instagram ms-3" href="" aria-label="Follow us on Instagram"></i>
+    <i class="fab fa-youtube-square ms-3" href="" aria-label="Follow us on YouTube"></i>
+  </p>
+</footer>
+
 </html>
