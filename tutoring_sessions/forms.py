@@ -8,6 +8,7 @@ class LogSessionForm(forms.Form):
         label="Select Student",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+
     session_datetime = forms.DateTimeField(
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
         label="Session Date and Time"

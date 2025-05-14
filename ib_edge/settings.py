@@ -47,12 +47,10 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "home",
     "packages",
-    "reviews",
-    "faq",
     "contact",
     "checkout",
     "tutoring_sessions",
-    'user_profiles.apps.UserProfilesConfig',
+    "user_profiles.apps.UserProfilesConfig",
 ]
 
 MIDDLEWARE = [

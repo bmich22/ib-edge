@@ -75,12 +75,6 @@
               <li class="nav-item me-3">
                 <a class="nav-link" href="{% url 'packages' %}">Tutoring Packages</a>
               </li>
-              <li class="nav-item me-3">
-                <a class="nav-link" href="{% url 'faq' %}">FAQ</a>
-              </li>
-              <li class="nav-item me-3">
-                <a class="nav-link" href="{% url 'reviews' %}">Reviews</a>
-              </li>
               </li><li class="nav-item me-3">
                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>
               </li>
@@ -105,9 +99,16 @@
       {% if user.is_authenticated %}
         <div class="bg-secondary-subtle border-bottom py-2">
         <div class="container align-items-center flex-wrap gap-2">
-        <span>
-          Welcome, <strong>{{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</strong>
-        </span>
+          <span>
+            Welcome,
+            <strong>
+              {% if user.userprofile.first_name and user.userprofile.last_name %}
+                {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}
+              {% else %}
+                {{ user.username }}
+              {% endif %}
+            </strong>
+          </span>
 
         {% if not user.is_superuser and not user.userprofile.is_tutor %}
           <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary">

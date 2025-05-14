@@ -18,7 +18,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def checkout(request):
-    """ A view to return the reviews page """
+    """ A view to return the checkout page """
     
     return render(request, 'checkout/checkout.html')
 
