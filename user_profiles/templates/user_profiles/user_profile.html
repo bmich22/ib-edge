@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container mt-5">
+    <!-- Display student name -->
     <span>
       <h4>Student:  <strong>{% if user.userprofile and user.userprofile.first_name and user.userprofile.last_name %}
         {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}

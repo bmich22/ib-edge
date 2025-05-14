@@ -29,10 +29,10 @@
             {% if user.is_authenticated %}
               <form method="post" action="{% url 'start_checkout' package.id %}">
                 {% csrf_token %}
-                <button class="btn btn-primary mt-2 w-100">Buy Now</button>
+                <button class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">Buy Now</button>
               </form>
             {% else %}
-              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-primary mt-2 w-100">
+              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">
                 Sign up to Buy
               </a>
               {% endif %}
