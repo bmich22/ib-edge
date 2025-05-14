@@ -1,48 +1,89 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <section class="text-center">
-      <h2 class="mb-4 text-primary">Meet Your Tutors</h2>
-      <p class="mt-4">
-        We’re two college students and a brother-sister team, dedicated to helping IB Diploma students succeed. Our goal is to make your IB Diploma years less stressful by offering online tutoring support that’s personalized to your strengths and goals.
-        Whether you need help with exam prep, IA brainstorming, or improving your coursework, we're here to support your success.
-      </p>
+        <h2 class="mb-3 text-primary fw-bold">Meet Your Tutors</h2>
+        <p>
+          We’re two college students and a brother-sister team, dedicated to
+          helping IB Diploma students succeed. Our goal is to make your IB
+          Diploma years less stressful by offering online tutoring support
+          that’s personalized to your strengths and goals. Whether you need help
+          with exam prep, IA brainstorming, or improving your coursework, we're
+          here to support your success.
+        </p>
       </section>
     </div>
   </div>
 </div>
 
-<div class="container-sm mt-2">
+<div class="container-sm mt-1">
   <div class="row justify-content-center">
-      <section class="py-2">
-        <div class="container text-center">
-          <div class="row justify-content-around">
-            <div class="bg-warning-subtle col-md-5 p-3">
-              <h5 class="text-primary">Mary – English & EE Specialist</h5>
-              <p style="font-size: 0.7rem;">Mary is currently in her second year at the University of Amsterdam, where she is pursuing a degree in Linguistics. A graduate of an IB World School, Mary achieved a top score of 7 in English Higher Level (HL) and brings firsthand experience with the demands of the IB curriculum.</p>
+    <section class="py-2">
+      <div class="container text-center">
+        <div class="row justify-content-around">
+          <div class="bg-warning-subtle col-md-5 pt-3 pb-1">
+            <h5 class="text-primary">Mary – English & EE Specialist</h5>
+            <p style="font-size: 0.7rem">
+              Mary is currently in her second year at the University of
+              Amsterdam, where she is pursuing a degree in Linguistics. A
+              graduate of an IB World School, Mary achieved a top score of 7 in
+              English Higher Level (HL) and brings firsthand experience with the
+              demands of the IB curriculum.
+            </p>
 
-<p style="font-size: 0.7rem;">She tutors English, Extended Essay (EE), and Theory of Knowledge (TOK), and has a strong passion for helping students develop clarity, structure, and confidence in their academic writing. In addition to her studies, Mary serves as a Teaching Assistant for Academic Writing in the College of Humanities at UvA, supporting undergraduate students in refining their critical thinking and written expression.</p>
-                
-<p style="font-size: 0.7rem;">With her academic background and supportive teaching style, Mary is well-equipped to guide IB students through their coursework and assessments with insight and encouragement.</p>
-</div>
-            <div class="bg-warning-subtle col-md-5 p-3">
-              <h5 class="text-primary">Ivan – Math & Physics Expert</h5>
-              <p style="font-size: 0.7rem;">Ivan is currently pursuing a Master’s degree in Systems and Control at the University of Delft. He brings a strong academic background in mathematics and physics, and offers tutoring for both Math and Physics, at Standard Level (SL) and Higher Level (HL) in the IB curriculum.</p>
+            <p style="font-size: 0.7rem">
+              She tutors English, Extended Essay (EE), and Theory of Knowledge
+              (TOK), and has a strong passion for helping students develop
+              clarity, structure, and confidence in their academic writing. In
+              addition to her studies, Mary serves as a Teaching Assistant for
+              Academic Writing in the College of Humanities at UvA, supporting
+              undergraduate students in refining their critical thinking and
+              written expression.
+            </p>
 
-                <p style="font-size: 0.7rem;">Ivan completed his undergraduate studies at the University of Groningen, where he also served as a Teaching Assistant, supporting students in technical subjects and developing his passion for clear, structured instruction. His experience in both academic research and practical problem-solving allows him to guide students through complex concepts with clarity and confidence. Ivan also served as the Technical Director of the University of Groningen's Autonomous Driving Team.</p>
-                
-                <p style="font-size: 0.7rem;">Ivan’s tutoring focuses on building strong foundational understanding and problem-solving skills.</p>
-              </div>
+            <p style="font-size: 0.7rem">
+              With her academic background and supportive teaching style, Mary
+              is well-equipped to guide IB students through their coursework and
+              assessments with insight and encouragement.
+            </p>
+          </div>
+          <div class="bg-warning-subtle col-md-5 pt-3 pb-1">
+            <h5 class="text-primary">Ivan – Math & Physics Specialist</h5>
+            <p style="font-size: 0.7rem">
+              Ivan is currently pursuing a Master’s degree in Systems and
+              Control at the University of Delft. He brings a strong academic
+              background in mathematics and physics, and offers tutoring for
+              both IB Math and IB Physics, at Standard Level (SL) and Higher
+              Level (HL).
+            </p>
+
+            <p style="font-size: 0.7rem">
+              Ivan completed his undergraduate studies at the University of
+              Groningen, where he also served as a Teaching Assistant,
+              supporting students in technical subjects and developing his
+              passion for clear, structured instruction. His experience in both
+              academic research and practical problem-solving allows him to
+              guide students through complex concepts with clarity and
+              confidence. Ivan also served as the Technical Director of the
+              University of Groningen's Autonomous Driving Team.
+            </p>
+
+            <p style="font-size: 0.7rem">
+              Ivan’s tutoring focuses on building strong foundational
+              understanding and problem-solving skills.
+            </p>
           </div>
         </div>
-      </section>
-      <p class="mt-4 text-center">
-        <a href="{% url 'packages' %}" class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">See Our Tutoring Packages</a>
-      </p>
+      </div>
+    </section>
+    <p class="mt-2 text-center">
+      <a href="{% url 'packages' %}"
+        class="btn btn-sm text-warning rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase"
+        >See Our Tutoring Packages</a
+      >
+    </p>
   </div>
 </div>
-    
+
 {% endblock %}

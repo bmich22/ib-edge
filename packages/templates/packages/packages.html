@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-  <h2 class="mb-4 text-primary">IB Edge Tutoring Packages</h2>
+  <h2 class="mb-4 text-primary fw-bold">IB Edge Tutoring Packages</h2>
   <!-- Enable site admins to add packages from front end -->
   {% if request.user.is_staff %}
     <div class="mb-4">
@@ -32,7 +32,7 @@
                 <button class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">Buy Now</button>
               </form>
             {% else %}
-              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">
+              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-sm text-warning rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">
                 Sign up to Buy
               </a>
               {% endif %}
