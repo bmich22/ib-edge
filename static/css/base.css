@@ -15,6 +15,20 @@ main {
     flex: 1;
 }
 
+.btn {
+    color:#e4a11b;
+    text-transform:uppercase;
+    font-weight: 800;
+}
+
+form label,
+form .form-label,
+form .form-control {
+  line-height: 1;
+  margin-bottom: 0.25rem; /* optional: reduce spacing below labels */
+  font-size: 0.9rem;       /* optional: make text a bit smaller */
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -26,6 +40,10 @@ main {
 
 .main-logo-link {
     width: fit-content;
+}
+
+#id_password1_helptext {
+    font-size: .75em;
 }
 
 /* .shop-now-button {
