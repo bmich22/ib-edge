@@ -109,7 +109,7 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 
 LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGIN_REDIRECT_URL = '/user_profile/profile/'
 
 WSGI_APPLICATION = "ib_edge.wsgi.application"
 

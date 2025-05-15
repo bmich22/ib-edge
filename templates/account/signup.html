@@ -6,15 +6,15 @@
 {% endblock head_title %}
 
 {% block content %}
-  <div class="container mt-5">
+  <div class="container my-2">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h2 class="card-title text-center mb-4">{% trans "Sign Up" %}</h2>
+            <h2 class="card-title text-center mb-2">{% trans "Sign Up" %}</h2>
 
             <p class="text-center">
-              {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">THIS IS NOT IN ALLAUTH FOLDER sign in</a>.{% endblocktrans %}
+              {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
             </p>
 
             <form method="post" action="{% url 'account_signup' %}">
@@ -32,9 +32,6 @@
               </div>
             </form>
 
-            <hr>
-
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
           </div>
         </div>
       </div>

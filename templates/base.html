@@ -128,17 +128,16 @@
     </div>
   </div>
 {% endif %}
-    <!-- </header> -->
-    {% if messages %}
-    <div class="message-container"></div>
-    {% endif %} 
-    {% block page_header %}
-    {% endblock %} 
-    {% block content %}
-    {%endblock %} 
-    {% block postloadjs %}
-    {% endblock %}
-  </body>
+{% if messages %}
+<div class="message-container"></div>
+{% endif %} 
+<main class="flex-grow-1 container my-4">
+  {% block page_header %}
+  {% endblock %} 
+  {% block content %}
+  {%endblock %}
+</main> 
+
 <!-- Footer -->
 <footer class="bg-primary text-light mt-auto text-center py-2" role="contentinfo">
   <p class="m-0 text-center text-white"><i class="fa-regular fa-copyright fa-xs"></i> IB EDGE | Follow us:
@@ -148,4 +147,7 @@
   </p>
 </footer>
 
+    {% block postloadjs %}
+    {% endblock %}
+  </body>
 </html>
