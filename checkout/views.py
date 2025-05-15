@@ -64,6 +64,11 @@ def start_checkout(request, package_id):
         success_url=request.build_absolute_uri('/checkout/success/'),
         cancel_url=request.build_absolute_uri('/checkout/cancel/'),
         customer_email=parent_email,
+
+        metadata={
+            'user_id': str(request.user.id),
+            'package_id': str(package.id),
+        },
     )
 
     # Store Stripe metadata for confirmation
@@ -110,7 +115,7 @@ def checkout_success(request):
         student_name = f"{profile.first_name} {profile.last_name}".strip() or request.user.username
 
         # Send confirmation email
-        subject='Tutoring Package Confirmation',
+        subject='Tutoring Package Confirmation'
         message=(
             f"Thank you for purchasing the {purchased_package.name} package.\n"
             f"Your card has been charged ${purchased_package.price:.2f}.\n"

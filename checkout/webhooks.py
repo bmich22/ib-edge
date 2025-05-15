@@ -19,7 +19,7 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload=payload,
             sig_header=sig_header,
-            secret=wh_secret
+            secret=webhook_secret
         )
     except ValueError:
         return HttpResponse("Invalid payload", status=400)
@@ -28,16 +28,24 @@ def stripe_webhook(request):
     except Exception as e:
         return HttpResponse(f"Webhook error: {str(e)}", status=400)
 
-    handler = StripeWH_Handler(request)
+    print("🔔 Received event:", event['type'])
+
+    handler = StripeWebhookHandler(request)
 
     event_map = {
-        'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
+        'payment_intent.succeeded': handler.payment_succeeded,
         'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,
     }
 
     event_type = event['type']
-    event_handler = event_map.get(event_type, handler.handle_event)
+    event_handler = event_map.get(event_type, handler.unhandled_event)
 
-    return event_handler(event)
-
+    try:
+        print("📦 Dispatching to handler for:", event_type)
+        return event_handler(event)
+    except Exception as e:
+        print("❌ Error during event handling:", str(e))
+        import traceback
+        traceback.print_exc()
+        return HttpResponse(status=400)
 
