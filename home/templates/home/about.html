@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
-<div class="container mt-3">
+<div class="container-lg mt-1">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-9">
       <section class="text-center">
         <h2 class="mb-3 text-primary fw-bold">Meet Your Tutors</h2>
         <p>
@@ -15,9 +15,8 @@
       </section>
     </div>
   </div>
-</div>
 
-<div class="container-sm mt-1">
+  <!-- Tutor bios -->
   <div class="row justify-content-center">
     <section class="py-2">
       <div class="container text-center">
@@ -79,11 +78,9 @@
     </section>
     <p class="mt-2 text-center">
       <a href="{% url 'packages' %}"
-        class="btn btn-sm text-warning rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase"
-        >See Our Tutoring Packages</a
-      >
+        class="btn btn-fe"
+        >See Our Tutoring Packages</a>
     </p>
-  </div>
 </div>
-
+</div>
 {% endblock %}

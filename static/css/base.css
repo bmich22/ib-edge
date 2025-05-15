@@ -15,10 +15,24 @@ main {
     flex: 1;
 }
 
-.btn {
-    color:#e4a11b;
+.btn-fe, .btn-fe:hover {
+    background-color: #3B71CA;
+    color:white;
     text-transform:uppercase;
-    font-weight: 800;
+    font-weight: bold;
+    padding: 0.3rem 0.6rem;
+    border-radius: .2rem;
+}
+
+.btn-db, .btn-db:hover {
+    font-size: smaller;
+    background-color: transparent; 
+    border: 2px solid #007bff;
+    color: #3B71CA;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
 }
 
 form label,

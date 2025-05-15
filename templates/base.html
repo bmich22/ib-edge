@@ -88,7 +88,7 @@
                     <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                   </li>
                   <li class="d-flex">
-                    <a href="{% url 'account_signup' %}" class="btn text-white fw-bold btn-warning ms-2">
+                    <a href="{% url 'account_signup' %}" class="btn bg-warning text-primary fw-bold btn-warning ms-2">
                       Sign Up
                     </a>
                   </li>
@@ -121,8 +121,8 @@
             Edit Personal Details
           </a>
         {% else %}
-          <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-primary">
-            Profile Dashboard
+          <a href="{% url 'user_profile' %}" class="btn btn-db ms-3">
+            Admin Dashboard
           </a>
         {% endif %}
     </div>
@@ -139,8 +139,8 @@
 </main> 
 
 <!-- Footer -->
-<footer class="bg-primary text-light mt-auto text-center py-2" role="contentinfo">
-  <p class="m-0 text-center text-white"><i class="fa-regular fa-copyright fa-xs"></i> IB EDGE | Follow us:
+<footer class="bg-primary mt-auto text-center py-2" style="color: rgba(255, 255, 255, 0.55);" role="contentinfo">
+  <p class="m-0 text-center"><i class="fa-regular fa-copyright fa-xs"></i> IB EDGE | Follow us:
     <i class="fa-brands fa-facebook ms-3" href="" aria-label="Follow us on Facebook"></i>
     <i class="fa-brands fa-square-instagram ms-3" href="" aria-label="Follow us on Instagram"></i>
     <i class="fab fa-youtube-square ms-3" href="" aria-label="Follow us on YouTube"></i>

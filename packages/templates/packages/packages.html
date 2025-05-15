@@ -29,17 +29,18 @@
             {% if user.is_authenticated %}
               <form method="post" action="{% url 'start_checkout' package.id %}">
                 {% csrf_token %}
-                <button class="btn btn-sm text-white rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">Buy Now</button>
+                <button class="btn btn-fe">Buy Now</button>
               </form>
             {% else %}
-              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-sm text-warning rounded-1 px-4 py-2 fw-bold bg-primary text-uppercase">
+              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-fe text-warning">
                 Sign up to Buy
               </a>
               {% endif %}
             <!-- Enable site admins to edit/delete packages from front end -->
             {% if request.user.is_staff %}
-              <a href="{% url 'edit_package' package.id %}" class="btn btn-warning btn-sm mt-2">Edit</a>
-              <a href="{% url 'delete_package' package.id %}" class="btn btn-danger btn-sm mt-2">Delete</a>
+              <hr>
+              <a href="{% url 'edit_package' package.id %}" class="btn btn-db bg-warning border-0 text-dark me-1">Edit</a>
+              <a href="{% url 'delete_package' package.id %}" class="btn btn-db bg-danger border-0 text-white">Delete</a>
             {% endif %}
           </div>
         </div>
