@@ -1,0 +1,8 @@
+Thank you for purchasing the {{ package.name }} package!
+You’ve been charged ${{ package.price }}.
+You now have {{ package.num_sessions }} sessions available.
+Sessions are valid until {{ expiration_date }}.
+
+Students can log into their profile to track or book sessions.
+
+– The IB Edge Team

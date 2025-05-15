@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Confirmation</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.5;">
+    <h2 style="color: #3B71CA;">Thanks for your purchase!</h2>
+    <p>
+        You’ve successfully purchased the <strong>{{ package.name }}</strong> package.<br>
+        <strong>Amount Charged:</strong> ${{ package.price }}<br>
+        <strong>Sessions Added:</strong> {{ package.num_sessions }}<br>
+        <strong>Valid Until:</strong> {{ expiration_date }}
+    </p>
+    <p>
+        Students can log in to their profile anytime to track or book your sessions.
+    </p>
+    <hr>
+    <p style="font-size: 0.9em; color: #888;">
+        This email was sent by IB Edge Tutoring.
+    </p>
+</body>
+</html>
