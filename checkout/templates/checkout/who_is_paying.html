@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container mt-5">
   <h3>Who’s Paying?</h3>
-  <p>Please enter the parent’s email for the payment receipt:</p>
+  <p>Please enter the parent’s/payer's email for the payment receipt:</p>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

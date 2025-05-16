@@ -7,13 +7,13 @@
 <body style="font-family: Arial, sans-serif; line-height: 1.5;">
     <h2 style="color: #3B71CA;">Thanks for your purchase!</h2>
     <p>
-        You’ve successfully purchased the <strong>{{ package.name }}</strong> package.<br>
-        <strong>Amount Charged:</strong> ${{ package.price }}<br>
+        Thank you for purchasing the <strong>{{ package.name }}</strong> package.<br>
+        <strong>Amount Charged:</strong> {{ currency }}{{ amount_charged }}<br>
         <strong>Sessions Added:</strong> {{ package.num_sessions }}<br>
         <strong>Valid Until:</strong> {{ expiration_date }}
     </p>
     <p>
-        Students can log in to their profile anytime to track or book your sessions.
+        Students can log in to their profile to book and track sessions.
     </p>
     <hr>
     <p style="font-size: 0.9em; color: #888;">

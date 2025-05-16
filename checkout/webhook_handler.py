@@ -1,4 +1,3 @@
-print("💡 webhook_handler.py was loaded")
 from django.http import HttpResponse
 from django.utils import timezone
 from datetime import timedelta
@@ -7,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from checkout.models import Purchase, Package
 from user_profiles.models import UserProfile
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 
 class StripeWebhookHandler:
@@ -16,6 +17,8 @@ class StripeWebhookHandler:
     def handle_payment_intent_succeeded(self, event):
         print("⚡ Inside handle_payment_intent_succeeded")
         intent = event['data']['object']
+        amount_charged = intent['amount_received'] / 100
+        currency = intent['currency'].upper()
         metadata = intent.get('metadata', {})
         print("🔍 Metadata:", metadata)
         user_id = metadata.get('user_id')
@@ -29,7 +32,7 @@ class StripeWebhookHandler:
             package = Package.objects.get(id=package_id)
             profile = user.userprofile
         except (User.DoesNotExist, Package.DoesNotExist):
-            print("⚠️ User or package not found.")
+            print("User or package not found.")
             return HttpResponse("success")
 
         # Create purchase
@@ -45,29 +48,30 @@ class StripeWebhookHandler:
         # Update profile session count
         profile.total_sessions_available += package.num_sessions
         profile.save()
+        
+        # Prepare context for the templates
+        context = {
+            'package': package,
+            'expiration_date': expiration_date,
+        }
 
-        # Send confirmation email
-        subject = "Tutoring Package Confirmation – IB Edge"
-        message = (
-            f"Thank you for purchasing the {package.name} package!\n\n"
-            f"Your card has been charged, ${package.price}.\n\n"
-            f"{package.num_sessions} sessions have been added to your profile.\n"
-            f"Sessions are valid until {expiration_date.strftime('%B %d, %Y')}.\n\n"
-            f"If you have any questions, feel free to reply to this email.\n\n"
-            f"– The IB Edge Team"
-        )
+        # Render subject and body from templates
+        subject = render_to_string('checkout/confirmation_subject.html', context).strip()
+        body_html = render_to_string('checkout/confirmation_body.html', context)
+        body_text = render_to_string('checkout/confirmation_body.txt', context)
 
         try:
-            send_mail(
+            email = EmailMultiAlternatives(
                 subject=subject,
-                message=message,
+                body=body_text,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[customer_email],
-                fail_silently=False,
+                to=[customer_email],
             )
-            print(f"✅ Email sent to {customer_email}")
+            email.attach_alternative(body_html, "text/html")
+            email.send()
+            print(f"Email sent to {customer_email}")
         except Exception as e:
-            print(f"❌ Error sending email to {customer_email}: {e}")
+            print(f"Error sending email to {customer_email}: {e}")
 
     def unhandled_event(self, event):
         print(f"Unhandled event type: {event['type']}")

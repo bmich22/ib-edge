@@ -1,5 +1,5 @@
 Thank you for purchasing the {{ package.name }} package!
-You’ve been charged ${{ package.price }}.
+You’ve been charged {{ currency }}{{ amount_charged }}.
 You now have {{ package.num_sessions }} sessions available.
 Sessions are valid until {{ expiration_date }}.
 

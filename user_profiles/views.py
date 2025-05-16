@@ -29,7 +29,7 @@ def user_profile(request):
         form = UserProfileForm(instance=profile)
 
     # Check if the profile is incomplete
-    is_incomplete = not profile.subjects.exists() or not profile.parent_email
+    is_incomplete = not profile.first_name and profile.last_name
 
     # Decide whether to show the form
     show_form = is_editing or is_incomplete

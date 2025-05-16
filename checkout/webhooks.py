@@ -28,7 +28,7 @@ def stripe_webhook(request):
     except Exception as e:
         return HttpResponse(f"Webhook error: {str(e)}", status=400)
 
-    print("🔔 Received event:", event['type'])
+    print("Received event:", event['type'])
 
     handler = StripeWebhookHandler(request)
 
@@ -48,11 +48,11 @@ def stripe_webhook(request):
         if isinstance(response, HttpResponse):
             return response
         else:
-            print("⚠️ Handler returned None — defaulting to 200 OK")
+            print("Handler returned None — defaulting to 200 OK")
             return HttpResponse(status=200)
 
     except Exception as e:
-        print("❌ Error during event handling:", str(e))
+        print("Error during event handling:", str(e))
         import traceback
         traceback.print_exc()
         return HttpResponse("Webhook handler error", status=400)
