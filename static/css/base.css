@@ -43,6 +43,10 @@ form .form-control {
   font-size: 0.9rem;       /* optional: make text a bit smaller */
 }
 
+.messages {
+    color: red;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -59,21 +63,6 @@ form .form-control {
 #id_password1_helptext {
     font-size: .75em;
 }
-
-/* .shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
-}
-
-.text-black {
-    color: #000 !important;
-}
-
-.border-black {
-    border: 1px solid black !important;
-}
-
 
 .fs-75 {
     font-size: .75em;

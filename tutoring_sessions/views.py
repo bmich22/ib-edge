@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import LogSessionForm
 from .models import TutoringSession
+from user_profiles.models import UserProfile
+from django.contrib.auth.models import User
+from datetime import datetime
 
 @login_required
 def log_tutoring_session(request):
@@ -14,24 +17,25 @@ def log_tutoring_session(request):
     if request.method == 'POST':
         form = LogSessionForm(request.POST)
         if form.is_valid():
-            student = form.cleaned_data['student']
-            session_datetime = form.cleaned_data['session_datetime']
+            profile = form.cleaned_data['student']  # This is a UserProfile
+            session_date = form.cleaned_data['session_date']
+            session_time = form.cleaned_data['session_time']
+            session_time_obj = datetime.strptime(session_time, "%H:%M:%S").time()
+            session_datetime = datetime.combine(session_date, session_time_obj)
             notes = form.cleaned_data['notes']
 
-            # Create session record
             TutoringSession.objects.create(
-                user=student,
+                user=profile.user,
                 session_datetime=session_datetime,
                 notes=notes,
                 logged_by=request.user
             )
 
             # Decrement student session count
-            profile = student.userprofile
             profile.total_sessions_available = max(0, profile.total_sessions_available - 1)
             profile.save()
 
-            messages.success(request, f"Session logged for {student.username}")
+            messages.success(request, f"Session logged for {profile.user.username}")
             return redirect('log_tutoring_session')
     else:
         form = LogSessionForm()

@@ -1,5 +1,6 @@
 from django import forms
 from user_profiles.models import UserProfile
+import datetime
 
 
 class LogSessionForm(forms.Form):
@@ -9,9 +10,18 @@ class LogSessionForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-select'})
     )
 
-    session_datetime = forms.DateTimeField(
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
-        label="Session Date and Time"
+    session_date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        label="Session Date"
+    )
+
+    # Top of the hour options from 7am to 11pm
+    HOUR_CHOICES = [(datetime.time(h, 0), f"{h:02}:00") for h in range(7, 23)]
+
+    session_time = forms.ChoiceField(
+        choices=HOUR_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="Session Time"
     )
     notes = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),

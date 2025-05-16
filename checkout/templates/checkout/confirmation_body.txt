@@ -1,6 +1,7 @@
-Thank you for purchasing the {{ package.name }} package!
+Thank you for purchasing the {{ package.name }} package.
 You’ve been charged {{ currency }}{{ amount_charged }}.
 You now have {{ package.num_sessions }} sessions available.
+The subject chosen is {{ subject }}.
 Sessions are valid until {{ expiration_date }}.
 
 Students can log into their profile to track or book sessions.
