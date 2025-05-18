@@ -1,1 +1,1 @@
-web: gunicorn ib-edge.wsgi:application
+web: gunicorn ib_edge.wsgi:application
