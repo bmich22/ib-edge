@@ -1,0 +1,1 @@
+web: gunicorn ib-edge.wsgi:application

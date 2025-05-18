@@ -1,0 +1,50 @@
+[
+{
+  "model": "packages.package",
+  "pk": 1,
+  "fields": {
+    "name": "Bronze Package û Foundation Support",
+    "description": "Our basic tutoring package for students that need a little help along the way.",
+    "price": "160.00",
+    "num_sessions": 4,
+    "feature1": "4 tutoring sessions (55 minutes each)",
+    "feature2": "Access to a shared folder with study tips, notes and resources",
+    "feature3": "",
+    "feature4": "",
+    "feature5": "",
+    "ideal_for": "Students looking for targeted help with challenging topics or staying on track."
+  }
+},
+{
+  "model": "packages.package",
+  "pk": 2,
+  "fields": {
+    "name": "Silver Package û Academic Boost",
+    "description": "Our mid-tier package for students who want regular support and deeper content coverage.",
+    "price": "240.00",
+    "num_sessions": 8,
+    "feature1": "8 tutoring sessions (55 minutes each)",
+    "feature2": "Access to a shared folder with study tips, notes and resources",
+    "feature3": "",
+    "feature4": "",
+    "feature5": "",
+    "ideal_for": "Students who want consistent support throughout the block."
+  }
+},
+{
+  "model": "packages.package",
+  "pk": 3,
+  "fields": {
+    "name": "Gold Package û Full IB Subject Mastery",
+    "description": "Our premium package  for students that want several points of contact and review.",
+    "price": "350.00",
+    "num_sessions": 12,
+    "feature1": "12 tutoring sessions  (55 minutes each)",
+    "feature2": "Custom revision schedules + past paper practice",
+    "feature3": "Email/chat support for questions",
+    "feature4": "Access to a shared folder with study tips, notes and resources",
+    "feature5": "",
+    "ideal_for": "Students who want comprehensive support, structure, and accountability for exam success."
+  }
+}
+]

@@ -1,0 +1,154 @@
+[
+{
+  "model": "user_profiles.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "first_name": "",
+    "last_name": "",
+    "grade_year": "",
+    "parent_email": null,
+    "total_sessions_available": 0,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "first_name": "Sara",
+    "last_name": "Greene",
+    "grade_year": "11",
+    "parent_email": "michel22de@gmail.com",
+    "total_sessions_available": 0,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "first_name": "CJ",
+    "last_name": "Jones",
+    "grade_year": "12",
+    "parent_email": "cejehi7691@bamsrad.com",
+    "total_sessions_available": 7,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": 6,
+    "first_name": "Mary",
+    "last_name": "Jones",
+    "grade_year": "",
+    "parent_email": null,
+    "total_sessions_available": 0,
+    "is_tutor": true,
+    "bio": "Mary Jones is currently in her second year at the University of Amsterdam, where she is pursuing a degree in Linguistics. A graduate of an IB World School, Mary achieved a top score of 7 in English Higher Level (HL) and brings firsthand experience with the demands of the IB curriculum.\r\n\r\nShe tutors English, Extended Essay (EE), and Theory of Knowledge (TOK), and has a strong passion for helping students develop clarity, structure, and confidence in their academic writing. In addition to her studies, Mary serves as a Teaching Assistant for Academic Writing in the College of Humanities at UvA, supporting undergraduate students in refining their critical thinking and written expression.\r\n\r\nWith her academic background and supportive teaching style, Mary is well-equipped to guide IB students through their coursework and assessments with insight and encouragement.",
+    "calendly_url": "https://calendly.com/",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 6,
+  "fields": {
+    "user": 7,
+    "first_name": "Ivan",
+    "last_name": "Jones",
+    "grade_year": "",
+    "parent_email": null,
+    "total_sessions_available": 0,
+    "is_tutor": true,
+    "bio": "Ivan Jones is currently pursuing a MasterÆs degree in Systems and Control at the University of Delft. He brings a strong academic background in mathematics and physics, and offers tutoring for both Math and Physics, at Standard Level (SL) and Higher Level (HL) in the IB curriculum.\r\n\r\nIvan completed his undergraduate studies at the University of Groningen, where he also served as a Teaching Assistant, supporting students in technical subjects and developing his passion for clear, structured instruction. His experience in both academic research and practical problem-solving allows him to guide students through complex concepts with clarity and confidence. Ivan also served as the Technical Director of the University of Groningen's Autonomous Driving Team.\r\n\r\nIvanÆs tutoring focuses on building strong foundational understanding and problem-solving skills, helping students succeed in assessments and beyond.",
+    "calendly_url": "https://calendly.com/",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 7,
+  "fields": {
+    "user": 8,
+    "first_name": "Kevin",
+    "last_name": "Pearson",
+    "grade_year": "11",
+    "parent_email": "efg@123.com",
+    "total_sessions_available": 51,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": [
+      1,
+      5
+    ]
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 8,
+  "fields": {
+    "user": 9,
+    "first_name": "Dan",
+    "last_name": "Manning",
+    "grade_year": "12",
+    "parent_email": "mom@123.com",
+    "total_sessions_available": 63,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 9,
+  "fields": {
+    "user": 10,
+    "first_name": "Colleen",
+    "last_name": "Gray",
+    "grade_year": "11",
+    "parent_email": "mamam@123.com",
+    "total_sessions_available": 148,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": []
+  }
+},
+{
+  "model": "user_profiles.userprofile",
+  "pk": 10,
+  "fields": {
+    "user": 11,
+    "first_name": "Sara",
+    "last_name": "Bee",
+    "grade_year": "12",
+    "parent_email": "sarasmom@123.com",
+    "total_sessions_available": 61,
+    "is_tutor": false,
+    "bio": "",
+    "calendly_url": "",
+    "subjects": [
+      3,
+      4,
+      6,
+      7
+    ]
+  }
+}
+]
