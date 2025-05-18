@@ -4,11 +4,10 @@
   <h2>Admin Dashboard</h2>
   <p>Welcome, {{ user.username }}. You have site admin permissions.</p>
   <ul>
+    <li class="mb-2"><a href="/admin/">Go to Site Admin</a></li>
     <li class="mb-2"><a href="{% url 'log_tutoring_session' %}">Log a Tutoring Session</a></li>
     <li class="mb-2"><a href="/admin/contact/contactmessage/" target="_blank">View Contact Messages</a></li>
-    <li class="mb-2"><a href="/admin/">Go to Site Admin</a></li>
     <li class="mb-2"><a href="{% url 'packages' %}">Add/Edit/Delete Packages</a></li>
-    <li class="mb-2"><a href="/admin/contact/contactmessage/" target="_blank">View Contact Messages</a></li>
     <li class="mb-2"><a href="/admin/auth/user/" target="_blank">Add new tutor</a></li>
   </ul>
 </div>

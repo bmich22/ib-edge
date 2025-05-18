@@ -11,7 +11,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'is_tutor',
         'user_is_staff',
         'grade_year',
-        'subject_list', 
+        'subject_list',
     )
     list_filter = ('is_tutor', 'user__is_staff', 'subjects')
     search_fields = (
