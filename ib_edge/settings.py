@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "user_profiles.apps.UserProfilesConfig",
     'crispy_forms',
     'crispy_bootstrap5',
+    'storages',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
