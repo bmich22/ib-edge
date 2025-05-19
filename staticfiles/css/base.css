@@ -1,0 +1,94 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #555;
+    font-family: 'Merriweather Sans', serif;
+    letter-spacing: 0.04em;
+}
+
+main {
+    flex: 1;
+}
+
+.btn-fe, .btn-fe:hover {
+    background-color: #3B71CA;
+    color:white;
+    text-transform:uppercase;
+    font-weight: bold;
+    padding: 0.3rem 0.6rem;
+    border-radius: .2rem;
+}
+
+.btn-db, .btn-db:hover {
+    font-size: smaller;
+    background-color: transparent; 
+    border: 2px solid #007bff;
+    color: #3B71CA;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+}
+
+form label,
+form .form-label,
+form .form-control {
+  line-height: 1;
+  margin-bottom: 0.25rem; /* optional: reduce spacing below labels */
+  font-size: 0.9rem;       /* optional: make text a bit smaller */
+}
+
+.messages {
+    color: red;
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+#id_password1_helptext {
+    font-size: .75em;
+}
+
+.fs-75 {
+    font-size: .75em;
+}
+
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
