@@ -8,7 +8,7 @@
       Student:
       <strong>
       {% if user.userprofile and user.userprofile.first_name and user.userprofile.last_name %} 
-        {{ user.userprofile.first_name }}{{user.userprofile.last_name }}
+        {{ user.userprofile.first_name }} {{user.userprofile.last_name }}
       {% else %}
         {{ user.username }} 
       {% endif%}

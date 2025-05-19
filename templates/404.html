@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+    <section class="container header-container pt-4 pb-1">
+    <header class="py-3 text-center">
+          <h2 class="display-4 text-primary fw-bold">IB EDGE</h2>
+          <p class="lead mb-0">Expert tutoring in English, Math, Physics, EE & TOK — available 7 days a week.</p>
+    </header>
+    </section>
+        <div class="row h-100">
+            <div class="col-7 col-md-6 my-auto">
+                <h1 class="display-4 logo-font text-black">
+                    The page you are looking for isn't available
+                </h1>
+                <div class="my-5">
+                    <h4>
+                        <a href="{% url 'home' %}" 
+                            class="btn btn-fe">
+                                Return to IB EDGE
+                        </a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+{% endblock %}

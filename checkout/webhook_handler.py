@@ -61,7 +61,7 @@ class StripeWebhookHandler:
             payment_status='paid',
         )
 
-         # Update profile session count
+        # Update profile session count
         profile.total_sessions_available += package.num_sessions
         profile.save()
       

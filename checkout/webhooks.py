@@ -15,6 +15,9 @@ def stripe_webhook(request):
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     webhook_secret = settings.STRIPE_WH_SECRET
 
+    if sig_header is None:
+        return HttpResponse("Missing Stripe-Signature header", status=400)
+
     try:
         event = stripe.Webhook.construct_event(
             payload=payload,
@@ -41,18 +44,14 @@ def stripe_webhook(request):
     event_handler = event_map.get(event_type, handler.unhandled_event)
 
     try:
-        print("📦 Dispatching to handler for:", event_type)
-        print("🔧 Using function:", event_handler)
         response = event_handler(event)
 
         if isinstance(response, HttpResponse):
             return response
         else:
-            print("Handler returned None — defaulting to 200 OK")
             return HttpResponse(status=200)
 
     except Exception as e:
-        print("Error during event handling:", str(e))
         import traceback
         traceback.print_exc()
         return HttpResponse("Webhook handler error", status=400)
