@@ -2,4 +2,4 @@
 env.py
 __pycache__
 db.sqlite3
-staticfiles/
+staticfiles/git rm -r --cached staticfiles/
