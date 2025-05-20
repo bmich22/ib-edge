@@ -149,13 +149,52 @@
 </main> 
 
 <!-- Footer -->
+<!-- Footer -->
+<footer class="bg-primary text-white py-4" role="contentinfo">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+    
+    <!-- Left: Contact and Social -->
+    <div class="mb-3 mb-md-0">
+      <p class="mb-1">
+        <strong>IB EDGE</strong><br>
+        Brussels, Belgium<br>
+        Email: tutors@ib-edge.com
+      </p>
+      <div>
+        <a href="#" class="text-white me-3" aria-label="Follow us on Facebook">
+          <i class="fa-brands fa-facebook fa-lg"></i>
+        </a>
+        <a href="#" class="text-white me-3" aria-label="Follow us on Instagram">
+          <i class="fa-brands fa-square-instagram fa-lg"></i>
+        </a>
+        <a href="#" class="text-white" aria-label="Follow us on YouTube">
+          <i class="fab fa-youtube-square fa-lg"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Newsletter Signup -->
+    <div>
+      <form class="d-flex flex-column flex-sm-row align-items-center">
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" class="form-control me-sm-2 mb-2 mb-sm-0" placeholder="Your email">
+        <button type="submit" class="btn btn-light">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="text-center mt-3" style="color: rgba(255, 255, 255, 0.55); font-size: 0.875rem;">
+    <i class="fa-regular fa-copyright fa-xs"></i> IB EDGE
+  </div>
+</footer>
+{% comment %} <!-- Footer -->
 <footer class="bg-primary mt-auto text-center py-2" style="color: rgba(255, 255, 255, 0.55);" role="contentinfo">
   <p class="m-0 text-center"><i class="fa-regular fa-copyright fa-xs"></i> IB EDGE | Follow us:
     <i class="fa-brands fa-facebook ms-3" href="" aria-label="Follow us on Facebook"></i>
     <i class="fa-brands fa-square-instagram ms-3" href="" aria-label="Follow us on Instagram"></i>
     <i class="fab fa-youtube-square ms-3" href="" aria-label="Follow us on YouTube"></i>
   </p>
-</footer>
+</footer> {% endcomment %}
 
     {% block postloadjs %}
     {% endblock %}
