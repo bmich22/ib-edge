@@ -39,8 +39,8 @@ form label,
 form .form-label,
 form .form-control {
   line-height: 1;
-  margin-bottom: 0.25rem; /* optional: reduce spacing below labels */
-  font-size: 0.9rem;       /* optional: make text a bit smaller */
+  margin-bottom: 0.25rem; 
+  font-size: 0.9rem; 
 }
 
 .messages {
