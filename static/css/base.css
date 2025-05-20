@@ -68,12 +68,24 @@ form .form-control {
     font-size: .75em;
 }
 
- #mc_embed_signup {
-    background:#fff; 
-    false;clear:left; 
-    font:14px Helvetica,Arial,sans-serif; 
-    width: 600px;
+#mc_embed_signup {
+  font-size: 10px;
 }
+
+#mc_embed_signup input[type="email"] {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.85rem;
+  width:100%;
+}
+
+/* #mc_embed_signup .button {
+  font-size: 0.85rem;
+  padding: 0.375rem 0.75rem;
+  background-color: #ffffff;
+  /* color: #003366; */
+  border: none;
+} */
+
 
 /* -------------------------------- Media Queries */
 
