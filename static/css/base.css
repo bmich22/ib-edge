@@ -40,7 +40,7 @@ form .form-label,
 form .form-control {
   line-height: 1;
   margin-bottom: 0.25rem; 
-  font-size: 0.9rem; 
+  font-size: 0.9rem;       /* optional: make text a bit smaller */
 }
 
 .messages {
@@ -68,39 +68,11 @@ form .form-control {
     font-size: .75em;
 }
 
-/* Mailchimp Form Overrides */
-#mc_embed_signup {
-  background: #fff;
-  clear: left;
-  font: 14px Helvetica, Arial, sans-serif;
-  width: 100%;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-#mc_embed_signup h2 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-#mc_embed_signup input[type="email"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-#mc_embed_signup .button {
-  margin-top: 1rem;
-  background-color: #007bff; /* Adjust to match your theme */
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-}
-
-#mc_embed_signup .indicates-required {
-  font-size: 0.85rem;
-  color: #888;
+ #mc_embed_signup {
+    background:#fff; 
+    false;clear:left; 
+    font:14px Helvetica,Arial,sans-serif; 
+    width: 600px;
 }
 
 /* -------------------------------- Media Queries */
