@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/about/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/packages/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/contact/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=/checkout/who_is_paying/1/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=/checkout/who_is_paying/2/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=/checkout/who_is_paying/3/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/signup/?next=%2Fcheckout%2Fwho_is_paying%2F1%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/signup/?next=%2Fcheckout%2Fwho_is_paying%2F2%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/signup/?next=%2Fcheckout%2Fwho_is_paying%2F3%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=%2Fcheckout%2Fwho_is_paying%2F1%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=%2Fcheckout%2Fwho_is_paying%2F2%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://ib-edge-5d506d674ecb.herokuapp.com/accounts/login/?next=%2Fcheckout%2Fwho_is_paying%2F3%2F</loc>
+  <lastmod>2025-05-21T23:10:36+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
+</urlset>
