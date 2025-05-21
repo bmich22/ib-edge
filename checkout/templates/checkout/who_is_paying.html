@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
+<div class="container">
+  <p class="text-muted">
+  Package: <strong>{{ package.name }}</strong><br>
+  Price: ${{ package.price }}<br>
+  Includes: {{ package.num_sessions }} tutoring session{{ package.num_sessions|pluralize }}
+  <br>
+  </p>
   <h3>Who’s Paying?</h3>
   <p>Please enter the parent’s/payer's email for the payment receipt:</p>
   <form method="post">

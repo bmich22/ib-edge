@@ -7,6 +7,8 @@ from .models import TutoringSession
 from user_profiles.models import UserProfile
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.utils.timezone import make_aware
+
 
 @login_required
 def log_tutoring_session(request):
@@ -21,7 +23,7 @@ def log_tutoring_session(request):
             session_date = form.cleaned_data['session_date']
             session_time = form.cleaned_data['session_time']
             session_time_obj = datetime.strptime(session_time, "%H:%M:%S").time()
-            session_datetime = datetime.combine(session_date, session_time_obj)
+            session_datetime = make_aware(datetime.combine(session_date, session_time_obj))
             notes = form.cleaned_data['notes']
 
             TutoringSession.objects.create(

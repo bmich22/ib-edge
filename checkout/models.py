@@ -10,6 +10,8 @@ class Purchase(models.Model):
     package = models.ForeignKey(Package, on_delete=models.SET_NULL, null=True)
     purchased_on = models.DateTimeField(auto_now_add=True)
     expires_on = models.DateTimeField(null=True, blank=True)
+    customer_email = models.EmailField()
+    subject_choice = models.ForeignKey('user_profiles.Subject', on_delete=models.PROTECT, null=True, blank=True)
 
     stripe_checkout_id = models.CharField(max_length=255, blank=True, null=True)
     stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)

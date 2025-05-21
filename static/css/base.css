@@ -9,6 +9,7 @@ body {
     color: #555;
     font-family: 'Merriweather Sans', serif;
     letter-spacing: 0.04em;
+    min-height: 100vh;
 }
 
 main {

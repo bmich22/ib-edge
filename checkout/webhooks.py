@@ -1,8 +1,8 @@
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.conf import settings
+from django.http import HttpResponse
 import stripe
+from django.conf import settings
 
 from .webhook_handler import StripeWebhookHandler
 
@@ -11,6 +11,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 @require_POST
 @csrf_exempt
 def stripe_webhook(request):
+    print("Webhook view has been called!")
     payload = request.body
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     webhook_secret = settings.STRIPE_WH_SECRET

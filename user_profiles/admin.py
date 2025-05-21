@@ -8,10 +8,11 @@ class UserProfileAdmin(admin.ModelAdmin):
         'user_email',
         'user_first_name',
         'user_last_name',
-        'is_tutor',
-        'user_is_staff',
+        'total_sessions_available',
         'grade_year',
         'subject_list',
+        'is_tutor', 
+        'user_is_staff',
     )
     list_filter = ('is_tutor', 'user__is_staff', 'subjects')
     search_fields = (

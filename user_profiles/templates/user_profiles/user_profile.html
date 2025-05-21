@@ -28,7 +28,6 @@
   {% endif %}
   <hr />
 
-  {% if purchases %}
   <div class="row mt-4">
     <!-- Column 1: Total Sessions Available -->
     <div class="col-12 col-md-4 mb-4">
@@ -45,8 +44,10 @@
             </ul>
           {% endif %}
             <hr />
+          {% if total_sessions_available > 0 %}
           <a href="https://calendly.com/" class="btn btn-fe" target="_blank">
             Book Session</a>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -111,7 +112,6 @@
         </div>
       </div>
     </div>
-  {% endif %}  
   </div>
 </div>
 {% endblock %}

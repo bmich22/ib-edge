@@ -29,17 +29,15 @@ def who_is_paying(request, package_id):
 
     # Clear stale data if arriving fresh
     if request.method == 'GET':
-        request.session.pop('parent_email', None)
-        request.session.pop('subject_name', None)
+        request.session.pop('customer_email', None)
         request.session.pop('subject_id', None)
 
     form = ParentEmailForm(request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
-        request.session['parent_email'] = form.cleaned_data['parent_email']
-        subject = form.cleaned_data['subject']
-        request.session['subject_id'] = subject.id  
-        request.session['subject_name'] = subject.name
+        request.session['customer_email'] = form.cleaned_data['customer_email']
+        selected_subject = form.cleaned_data['subject_choice']
+        request.session['subject_id'] = selected_subject.id
         return redirect('start_checkout', package_id=package.id)
     
     return render(request, 'checkout/who_is_paying.html', {
@@ -50,18 +48,17 @@ def who_is_paying(request, package_id):
 @login_required
 def start_checkout(request, package_id):
     package = get_object_or_404(Package, id=package_id)
-    parent_email = request.session.get('parent_email')
-    subject_name = request.session.get('subject_name')
+    customer_email = request.session.get('customer_email')
+    subject_id = request.session.get('subject_id')
 
     logger.info("Checking session values:")
-    logger.info(f" - Parent email: {parent_email}")
-    logger.info(f" - Subject name: {subject_name}")
+    logger.info(f" - Customer email: {customer_email}")
+    logger.info(f" - Subject ID: {subject_id}")
 
     # Validate session state
-    if not parent_email or not subject_name or subject_name == 'Unknown':
-        messages.error(request, "Please enter parent email and select a subject before checkout.")
-        request.session.pop('parent_email', None)
-        request.session.pop('subject_name', None)
+    if not customer_email or not subject_id:
+        messages.error(request, "Please enter buyer's email and select a subject before checkout.")
+        request.session.pop('customer_email', None)
         request.session.pop('subject_id', None)
         return redirect('who_is_paying', package_id=package.id)
     
@@ -83,14 +80,13 @@ def start_checkout(request, package_id):
             mode='payment',
             success_url=request.build_absolute_uri('/checkout/success/'),
             cancel_url=request.build_absolute_uri('/checkout/cancel/'),
-            customer_email=parent_email,
+            customer_email=customer_email,
             payment_intent_data={
                 'metadata': {
-                    'user_id': str(request.user.id),
-                    'package_id': str(package.id),
-                    'subject': subject_name,
-                    'customer_email': parent_email,
-                    'package_price': package.price,
+                'user_id': str(request.user.id),
+                'package_id': str(package.id),
+                'subject_id': str(subject_id),
+                'customer_email': customer_email,
                 }
             }
         )
@@ -107,37 +103,37 @@ def start_checkout(request, package_id):
 
 @login_required
 def checkout_success(request):
-    user = request.user
-    profile = user.userprofile
-    parent_email = request.session.pop('parent_email', None)
-    package_id = request.session.pop('purchased_package_id', None)
-    stripe_checkout_id = request.session.pop('stripe_checkout_id', None)
-    stripe_payment_intent = request.session.pop('stripe_payment_intent', None)
+    # Extract what you need before clearing
+    purchase = Purchase.objects.filter(user=request.user).order_by('-purchased_on').first()
+    package = purchase.package if purchase else None
 
-    if not package_id:
-        return render(request, 'checkout/checkout_success.html')  # fallback
-
-    purchased_package = get_object_or_404(Package, id=package_id)
-    expiration_date = timezone.now() + timedelta(weeks=8)
-
-    # Create a purchase record
-    Purchase.objects.create(
-        user=user,
-        package=purchased_package,
-        expires_on=expiration_date,
-        stripe_checkout_id=stripe_checkout_id,
-        stripe_payment_intent=stripe_payment_intent,
-        payment_status='paid',
-    )
-
-    profile.total_sessions_available += purchased_package.num_sessions
-    profile.save()
+    # Now clear all relevant session keys
+    for key in [
+        'customer_email',
+        'subject_id',
+        'purchased_package_id',
+        'stripe_checkout_id',
+        'stripe_payment_intent'
+    ]:
+        request.session.pop(key, None)
 
     return render(request, 'checkout/checkout_success.html', {
-        'package': purchased_package,
+        'package': package,
+        'purchase': purchase,
+
     })
 
 
 @login_required
 def checkout_cancel(request):
+    keys_to_clear = [
+        'customer_email',
+        'subject_id',
+        'purchased_package_id',
+        'stripe_checkout_id',
+        'stripe_payment_intent',
+    ]
+    for key in keys_to_clear:
+        request.session.pop(key, None)
+
     return render(request, 'checkout/checkout_cancel.html')

@@ -32,7 +32,7 @@
                 <button class="btn btn-fe">Buy Now</button>
               </form>
             {% else %}
-              <a href="{% url 'account_login' %}?next={% url 'start_checkout' package.id %}" class="btn btn-fe text-warning">
+              <a href="{% url 'account_login' %}?next={% url 'who_is_paying' package.id %}" class="btn btn-fe text-warning">
                 Sign up to Buy
               </a>
               {% endif %}
