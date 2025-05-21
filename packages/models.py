@@ -17,6 +17,9 @@ class Package(models.Model):
 
     ideal_for = models.TextField(blank=True)
 
+    class Meta:
+        ordering = ['price']
+
     def __str__(self):
         return self.name
 
