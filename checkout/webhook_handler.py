@@ -60,6 +60,7 @@ class StripeWebhookHandler:
                     print("➕ Adding:", package.num_sessions)
                     profile.total_sessions_available += package.num_sessions
                     profile.save()
+                    profile.subjects.add(subject_choice)
                     print("✅ Profile saved.")
                     print("📦 Profile after update:", profile.total_sessions_available)
                 except Exception as e:

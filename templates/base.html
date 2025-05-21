@@ -88,36 +88,37 @@
       </nav>
       {% if user.is_authenticated %}
         <div class="bg-secondary-subtle border-bottom py-2">
-        <div class="container align-items-center flex-wrap gap-2">
-          <span>
-            Welcome,
-            <strong>
-              {% if user.userprofile.first_name and user.userprofile.last_name %}
-                {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}
-              {% else %}
-                {{ user.username }}
-              {% endif %}
-            </strong>
-          </span>
+          <div class="container">
+             <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2 gap-md-3">
+              <span class="fw-semibold">Welcome,
+                <strong>
+                  {% if user.userprofile.first_name and user.userprofile.last_name %}
+                    {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}
+                  {% else %}
+                    {{ user.username }}
+                  {% endif %}
+                </strong>
+              </span>
           
-        {% if not user.is_superuser and not user.userprofile.is_tutor %}
-          <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-success ms-3 me-3">
-            Student Dashboard
-          </a>
-          <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success me-3">
-            Buy Package
-          </a>
-          <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary me-3">
-            Edit Personal Details
-          </a>
-        {% else %}
-          <a href="{% url 'user_profile' %}" class="btn btn-db ms-3">
-            Dashboard
-          </a>
-        {% endif %}
-    </div>
-  </div>
-{% endif %}
+            {% if not user.is_superuser and not user.userprofile.is_tutor %}
+              <a href="{% url 'user_profile' %}" class="btn btn-sm btn-outline-success me-3">
+                Student Dashboard
+              </a>
+              <a href="{% url 'packages' %}" class="btn btn-sm btn-outline-success me-3">
+                Buy Package
+              </a>
+              <a href="{% url 'user_profile' %}?edit=1" class="btn btn-sm btn-outline-primary me-3">
+                Edit Personal Details
+              </a>
+            {% else %}
+              <a href="{% url 'user_profile' %}" class="btn btn-db ms-3">
+                Dashboard
+              </a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
 {% if messages %}
 <div class="message-container">
 {% if messages %}
