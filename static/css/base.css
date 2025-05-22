@@ -53,7 +53,7 @@ form .form-label,
 form .form-control {
   line-height: 1;
   margin-bottom: 0.25rem; 
-  font-size: 0.9rem;       /* optional: make text a bit smaller */
+  font-size: 0.9rem;
 }
 
 .messages {
@@ -82,22 +82,15 @@ form .form-control {
 }
 
 #mc_embed_signup {
-  font-size: 10px;
+  font-size: .75em;
+  width: 80%;
 }
 
 #mc_embed_signup input[type="email"] {
   padding: 0.375rem 0.5rem;
-  font-size: 0.85rem;
-  width:100%;
+  font-size: 0.75rem;
+  width:75%;
 }
-
-/* #mc_embed_signup .button {
-  font-size: 0.85rem;
-  padding: 0.375rem 0.75rem;
-  background-color: #ffffff;
-  /* color: #003366; */
-  border: none;
-} */
 
 
 /* -------------------------------- Media Queries */

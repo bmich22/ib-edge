@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://ib-edge-5d506d674ecb.herokuapp.com/sitemap.xml
