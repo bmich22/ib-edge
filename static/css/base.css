@@ -89,7 +89,6 @@ form .form-control {
 #mc_embed_signup input[type="email"] {
   padding: 0.375rem 0.5rem;
   font-size: 0.75rem;
-  width:75%;
 }
 
 
@@ -98,7 +97,7 @@ form .form-control {
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
   .container {
-    max-width: 80%;
+    max-width: 100%;
   }
 }
 
