@@ -35,7 +35,8 @@ MODELS
 | **About Page** The about introduces our tutors and provides a bio of each of them. |  ![image](/media/readme-images/about-large-screen.png) 
 | **Packages Page** The packages page displays the three packages on offer, bronze, silver and gold level.  Users can purchase a package via the button at the bottom of each package.  If site visitors try to buy they will be routed to sign up first. |  ![image](/media/readme-images/packages-large-screen.png) 
 | **Contact Page** The contact page displays a simple contact form that visitors can fill in name, email and message and send to the site admin. Messages are stored in a database.  Any site visitor can send a message via the contact form.  The contact form has a honey pot field for spam protection |  ![mobile-utility](/media/readme-images/packages-large-screen.png) 
-| **Authentication and Authorization** The site utilizes django-allauth for secure registration, login, and logout. A custom UserProfile model includes role flags (e.g., is_tutor, is_superuser) to manage access. Views are protected based on user roles, with session-based state reflected in the navbar and dashboard, and URL access is restricted using @login_required and role-specific checks. 
+| **Authentication and Authorization** The site utilizes django-allauth for secure registration, login, and logout. Styles are supported by Crispy Forms and Bootstrap.  | ![image](/media/readme-images/auth-forms.jpg)
+| **CUSTOME USER PROFILE MODEL** A custom UserProfile model includes role flags (e.g., is_tutor, is_superuser) to manage access. Views are protected based on user roles, with session-based state reflected in the navbar and dashboard, and URL access is restricted using @login_required and role-specific checks. |
 | **Student Dashboard** The student dashboard has three columns.  Column one shows the number of sessions they have available, this number is calculated by the number of sessions purchased minus sessions logged by a tutor.  If the student has sessions available, the 'book session' button will display and the student will be able to go to the tutor's calendar to book a session (this is an upcoming feature). Column two lists the tutoring sessions that have been completed, this is triggered by the tutor filling in the 'log session' form. Column three shows a list of packages purchased, the date, subject and expiration date. | ![image](/media/readme-images/student-dashboard.png)
 | **Tutor Dashboard** The tutor dashboard has links to utility features, most importantly the log session form. Future features are a functioning link to their calendly to check their calendar, a link to view current students. |![tutor-dashboard](/media/readme-images/tutor-dashboard.png)
 | **Admin Dashboard** The admin dashboard has links to utility features, most importantly, the link to the admin panel so  the site administrator doesn't have to sign in to the admin panel separately. Site admins can also log a tutoring session, they can check contact message via the link that will take them direct to the contact messages in the admin panel. There is also a link to add/edit/delete the Packages and they can also add a tutor |![admin-dashboard](/media/readme-images/admin-dashboard.png)
@@ -43,19 +44,25 @@ MODELS
 | **User Profile Form** After sign up the user is taken to the user profile where they are asked to fill in their first and last names, their grade level and a parent's email.  This form can be editied by clicking on the EDIT PROFILE button next to the welcome message.  | ![image](/media/readme-images/edit-user-profile.png)
 **Admin Add/Edit/Delete Package Form** When the site administrator is signed in, they can add, edit or delete any package directly on the packages page.  | ![image](/media/readme-images/admin-edit-packages.png)
 **Tutor Log Session Form** The tutor can access the log session form via their dashboard. In the form the tutor can choose the student name from the drop-down list, click on the calendar for the date of the session, choose a time from the drop-down list, enter notes about the session (not mandatory) and then click the log session button. The tutor will see a confirmation message in their window that the session has been logged. This is entered into the session database and triggers a calculation of the total sessions remaining for this student.  In the student's user profile this will be updated showing the number sessions remaining, and a list of the sessions logged and by which tutor.   | ![image](/media/readme-images/tutor-log-session.png) ![image](/media/readme-images/update-total-sessions.png)
-| **eCommerce** The application incorporates e-commerce features using Stripe Checkout for secure package payments. A  session counter reflects purchased sessions in real time, while Stripe webhooks ensure user accounts are updated accurately after each transaction. Upon successful payment, the user-profile page displays a confirmation message and the customer email (entered before purchase) receives an email confirmation. There is error handling built in to ensure that if a student hits the back button or leaves the page, the session goes back to parent email page and starts again.  Here the student must also choose a subject from the drop-down list.  These two entries must be filled in before going forward to the Stripe checkout page.| ![image](/media/readme-images/purchase-process.png)
+| **eCommerce** The application incorporates e-commerce features using Stripe Checkout for secure package payments. A  session counter reflects purchased sessions in real time, while Stripe webhooks ensure user accounts are updated accurately after each transaction. Upon successful payment, the user-profile page displays a confirmation message and the customer email (entered before purchase) receives an email confirmation. There is error handling built in to ensure that if a student hits the back button or leaves the page, the session goes back to parent email page and starts again.  Here the student must also choose a subject from the drop-down list.  These two entries must be filled in before going forward to the Stripe checkout page.| ![image](/media/readme-images/purchase-process-success.png)
 
 ### Marketing and SEO
 | Tool | Screenshot
 | ---- | ----
 | Email Marketing with Mailchimp Embedded Sign-Up Form | ![image](/media/readme-images/mailchimp-signup-and-verify.png)
 | Facebook Business Page (mockup) | ![image](/media/readme-images/facebook-page.jpg)
-| Keywords | ![image](/media/readme-images/keywords-terms-seo.png)
+| Keywords were used, mainly "IB Tutors, Expert IB Tutors and IB Tutoring".  There is a title tag on base.htlm with 'tutoring' and 'IB'.  Meta tags in the head include "IB tutoring, IB English tutor, IB Math HL, IB Physics HL, Extended Essay help, TOK tutoring, online IB tutor, IB exam prep, university IB tutors, affordable IB tutoring".  Hidden H1 tags are on each page (except contact) with "IB Tutoring in English, Math, Physics, EE & TOK". | ![image](/media/readme-images/keywords-terms-seo.png)
 
-### Not Working
-The booking system is not connected to any real Calendy accounts.  
+### Fixes and bugs
+The booking system is not connected to any real Calendy accounts.
+
+There is a runtime warning on the log_sessions form. "RuntimeWarning (I did not fix): DateTimeField TutoringSession.session_datetime received a naive datetime. This means you're using datetime.combine(...) to build a datetime object without timezone info (naive datetime) while Django has USE_TZ = True.It’s not breaking anything now, but for production-quality code, you should use timezone-aware datetime like this: session_datetime = make_aware(datetime.combine(session_date, session_time_obj))"
+
 
 ### Future Features
+**Enhance Email Confirmations**
+On the email confirmation sent to buyer/parent, an upgrade would be to add the first and last name of the student. Also, a confirmation email should also be sent to student email (currently only buyer/parent email gets confirmation).
+
 **Integrated Booking and Video Call System**
 Currently the students will book via the tutor's Calendly. An upgrade would be a system that is integrated where the student can also sign in and onto the sessions, all via the IN EDGE site.
 
@@ -65,18 +72,21 @@ Tutors should have access to the sessions admin panel so they can see notes from
 **Calculate Hours Worked**
 Tutors should be able to invoice based on the complete sessions.
 
+**Fix Runtime Error on Log Sessions Form**
+The session_datetime should be set to a base time zone.
+
 **Free Download and Links**
 Add a tab to the navbar so students can find study tips and subject-focused notes to download.  This area would also have links to other IB related sites.
 
 ### Tools and Technologies Used
 | Tool | Technology
 | ---- | ----------
-| [ChatGPT] | https://chatgpt.com/ | AI chatbot developed by OpenAI. to help with perfecting code and for general how-to instructions.
+| [ChatGPT](https://chatgpt.com/) | AI chatbot developed by OpenAI. Utilized to perfect code and for general how-to instructions.
 | [GitHub](http://github.com//) | Version control platform used for storing and managing this project.
 | [VS Code](https://code.visualstudio.com///) | Local code editor with Git integration.
-| [Django==4.2.18](https://www.djangoproject.com/) | Python web app framework.|
-| [Django AllAuth](https://docs.allauth.org/en/latest/) | django-allauth is package that handles authentication features such as user registration, login/logout, email verification, password reset, and social login.|
-| [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest//) | a Django package that makes it easy to style and format form layouts using Bootstrap or other CSS frameworks, without writing custom HTML for each form field.|
+| [Django==4.2.18](https://www.djangoproject.com/) | A Python web app framework.|
+| [Django AllAuth](https://docs.allauth.org/en/latest/) | A package that handles authentication features such as user registration, login/logout, email verification, password reset, and social login.|
+| [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest//) | A Django package that makes it easy to style and format form layouts using Bootstrap or other CSS frameworks, without writing custom HTML for each form field.|
 | HTML 5| The standard markup language for creating web pages and structuring content.
 | CSS| A styling language used to design and layout web pages, enhancing their appearance and responsiveness.
 | [Bootstrap 5.3.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/) | A front-end framework that simplifies web development with pre-styled components and a responsive grid system. Used to format the content, utilizing its columns and grids, its container-fluid and image-fluid, as well as utility styling on text, padding and margins.
@@ -90,7 +100,7 @@ Add a tab to the navbar so students can find study tips and subject-focused note
 | [Stripe](https://stripe.com/) | A payment processing platform that allows businesses to securely accept online payments, including credit cards, digital wallets (like Apple Pay), and bank transfers.
 | [Balsamiq](https://balsamiq.com/) | A wireframing tool utilized in the planning phase of IB EDGE and also to mock up the Facebook Business Page.
 | [Flake8](https://flake8.pycqa.org/en/latest/) | A Python linting tool that checks for style guide enforcement and potential errors in code. Used inside VS Code.
-| [Black 2024.6.0](https://black.readthedocs.io/en/stable/) | A Python code formatter that ensures consistent code style by automatically formatting code according to best practices. Used inside VS Code.
+| [Autopep 8](https://pypi.org/project/autopep8/) | A Python code formatter that ensures consistent code style by automatically formatting code according to best practices. Used inside VS Code.
 |[Gunicorn==20.1.0](https://gunicorn.org/) | A Python WSGI HTTP server used to serve web applications built with Django and acts as intermediary with Heroku.
 
 ### Automated Testing Manual
@@ -103,7 +113,8 @@ Add a tab to the navbar so students can find study tips and subject-focused note
 Continuous manual testing was performed as features were added to the project to ensure forms were loading and data was processed to and from the database. Responsiveness was tested inside Google Chrome Dev Tools to ensure the site is visually pleasing on all screen sizes. In addition, the HTML, CSS, and Python were run through linters to ensure clean, consistent, error-free code. The outcomes are below.
 | Checking | Screenshot
 | ---- | ----------
-**Sign Up Process and Profile Update**  | ![image](/media/readme-images/manual-test-1.jpg) |
+**Sign Up Process -  Success**  | ![image](/media/readme-images/test-signup-success.png) |
+**Sign Up Error Handling and Profile Update**  | ![image](/media/readme-images/manual-test-1.jpg) |
 **Error handling - Forms** When the site administrator is signed in, they can add, edit or delete any package directly on the packages page.  | ![image](/media/readme-images/manual-test-error-handling-forms.jpg) |
 **Error handling - Forms** When the site administrator is signed in, they can add, edit or delete any package directly on the packages page.  | ![image](/media/readme-images/manual-test-error-handling-forms-2.jpg) |
 **Checking Admin Panel/User Profile for update of Total Sessions Num and Subject is recorded** When the site administrator is signed in, they can add, edit or delete any package directly on the packages page.  | ![image](/media/readme-images/admin-panel-subjects-sessions.png) |
