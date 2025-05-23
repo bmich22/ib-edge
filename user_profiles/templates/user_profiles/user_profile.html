@@ -86,20 +86,17 @@
             {% for purchase in purchases %}
             <div class="mb-3">
               <p class="mb-1 fs-75">
-                <strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F
-                j, Y" }}
+                <strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F j, Y" }}
               </p>
               <p class="mb-1 fs-75">
                 <strong>Package:</strong> {{ purchase.package.name }}
               </p>
               <p class="mb-1 fs-75">
                 <strong>Sessions Purchased:</strong>
-                {{purchase.package.num_sessions }} - {{purchase.subject_choice
-                }}
+                {{purchase.package.num_sessions }} - {{purchase.subject_choice}}
               </p>
               <p class="mb-1 fs-75">
-                <strong>Expires On:</strong> {{ purchase.expires_on|date:"F j,
-                Y" }}
+                <strong>Expires On:</strong> {{ purchase.expires_on|date:"F j, Y" }}
               </p>
               <hr />
             </div>
