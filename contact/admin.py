@@ -6,7 +6,7 @@ from .models import ContactMessage
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'timestamp', 'is_read')  # ✅ Show in list
+    list_display = ('name', 'email', 'timestamp', 'is_read')
     list_filter = ('is_read',)
     search_fields = ('name', 'email', 'message')
     ordering = ('-timestamp',)

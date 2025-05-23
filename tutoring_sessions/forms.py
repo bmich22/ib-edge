@@ -5,13 +5,16 @@ import datetime
 
 class LogSessionForm(forms.Form):
     student = forms.ModelChoiceField(
-        queryset=UserProfile.objects.filter(user__purchases__isnull=False).distinct().order_by('last_name', 'first_name'),
+        queryset=UserProfile.objects.filter(
+            user__purchases__isnull=False).distinct().order_by(
+                'last_name', 'first_name'),
         label="Select Student",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
 
     session_date = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        widget=forms.DateInput(
+            attrs={'type': 'date', 'class': 'form-control'}),
         label="Session Date"
     )
 
@@ -30,4 +33,5 @@ class LogSessionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['student'].label_from_instance = lambda profile: f"{profile.last_name}, {profile.first_name} ({profile.user.email})"
+        self.fields['student'].label_from_instance = lambda profile:
+            f"{profile.last_name}, {profile.first_name} ({profile.user.email})"

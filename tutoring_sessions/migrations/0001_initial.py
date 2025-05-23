@@ -18,12 +18,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TutoringSession',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('session_datetime', models.DateTimeField()),
                 ('notes', models.TextField(blank=True)),
                 ('logged_on', models.DateTimeField(auto_now_add=True)),
-                ('logged_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='logged_sessions', to=settings.AUTH_USER_MODEL)),
-                ('purchase', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sessions', to='checkout.purchase')),
+                ('logged_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                 related_name='logged_sessions', to=settings.AUTH_USER_MODEL)),
+                ('purchase', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='sessions', to='checkout.purchase')),
             ],
         ),
     ]

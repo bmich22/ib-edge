@@ -18,15 +18,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Purchase',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('sessions_used', models.PositiveIntegerField(default=0)),
                 ('purchased_on', models.DateTimeField(auto_now_add=True)),
                 ('expires_on', models.DateTimeField(blank=True, null=True)),
-                ('stripe_checkout_id', models.CharField(blank=True, max_length=255, null=True)),
-                ('stripe_payment_intent', models.CharField(blank=True, max_length=255, null=True)),
-                ('payment_status', models.CharField(default='unconfirmed', max_length=50)),
-                ('package', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='packages.package')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='purchases', to=settings.AUTH_USER_MODEL)),
+                ('stripe_checkout_id', models.CharField(
+                    blank=True, max_length=255, null=True)),
+                ('stripe_payment_intent', models.CharField(
+                    blank=True, max_length=255, null=True)),
+                ('payment_status', models.CharField(
+                    default='unconfirmed', max_length=50)),
+                ('package', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.SET_NULL, to='packages.package')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='purchases', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

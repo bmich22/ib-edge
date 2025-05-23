@@ -13,7 +13,7 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,7 +23,8 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=50, blank=True)
 
     # Students
-    grade_year = models.CharField(max_length=20, blank=True)  # Example: "11", "IB2"
+    grade_year = models.CharField(
+        max_length=20, blank=True)  # Example: "11", "IB2"
     parent_email = models.EmailField(blank=True, null=True)
     subjects = models.ManyToManyField('Subject', blank=True)
     total_sessions_available = models.PositiveIntegerField(default=0)
@@ -44,6 +45,3 @@ class UserProfile(models.Model):
         total_logged = TutoringSession.objects.filter(user=self.user).count()
 
         return max(0, total_purchased - total_logged)
-
-
-

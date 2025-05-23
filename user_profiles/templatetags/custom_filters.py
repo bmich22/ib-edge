@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter
 def assigned_tutor(subjects):
     mary_subjects = {"English SL", "English HL", "Extended Essay (EE)", "TOK"}

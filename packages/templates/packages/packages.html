@@ -1,51 +1,75 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container-lg mt-2">
-  <h1 class="visually-hidden">IB Tutoring in English, Math, Physics, EE & TOK</h1>
+  <h1 class="visually-hidden">
+    IB Tutoring in English, Math, Physics, EE & TOK
+  </h1>
   <h2 class="mb-4 text-primary fw-bold">IB Edge Tutoring Packages</h2>
   <!-- Enable site admins to add packages from front end -->
   {% if request.user.is_staff %}
-    <div class="mb-4">
-      <a href="{% url 'add_package' %}" class="btn btn-success">+ Add New Package</a>
-    </div>
+  <div class="mb-4">
+    <a href="{% url 'add_package' %}" class="btn btn-success"
+      >+ Add New Package</a
+    >
+  </div>
   {% endif %}
   <div class="row">
     {% for package in packages %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body"; style="font-size: 0.8rem;">
-            <h5 class="card-title" style="min-height: 3rem;">{{ package.name }}</h5>
-            <hr>
-            <p class="card-text">{{ package.description|truncatechars:100 }}</p>
-            <ul class="list-unstyled">
-              {% if package.feature1 %}<li>✔ {{ package.feature1 }}</li>{% endif %}
-              {% if package.feature2 %}<li>✔ {{ package.feature2 }}</li>{% endif %}
-              {% if package.feature3 %}<li>✔ {{ package.feature3 }}</li>{% endif %}
-              {% if package.feature4 %}<li>✔ {{ package.feature4 }}</li>{% endif %}
-              {% if package.feature5 %}<li>✔ {{ package.feature5 }}</li>{% endif %}
-            </ul>
-            <p class="mt-2"><strong>Ideal for:</strong> {{ package.ideal_for }}</p>
-            <p><strong>Price:</strong> ${{ package.price }}</p>
-            <!-- Buy Now button -->
-            {% if user.is_authenticated %}
-              <form method="post" action="{% url 'start_checkout' package.id %}">
-                {% csrf_token %}
-                <button class="btn btn-fe">Buy Now</button>
-              </form>
-            {% else %}
-              <a href="{% url 'account_login' %}?next={% url 'who_is_paying' package.id %}" class="btn btn-fe text-warning">
-                Sign up to Buy
-              </a>
-              {% endif %}
-            <!-- Enable site admins to edit/delete packages from front end -->
-            {% if request.user.is_staff %}
-              <hr>
-              <a href="{% url 'edit_package' package.id %}" class="btn btn-db bg-warning border-0 text-dark me-1">Edit</a>
-              <a href="{% url 'delete_package' package.id %}" class="btn btn-db bg-danger border-0 text-white">Delete</a>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body" style="font-size: 0.8rem">
+          <h5 class="card-title" style="min-height: 3rem">
+            {{ package.name }}
+          </h5>
+          <hr />
+          <p class="card-text">{{ package.description|truncatechars:100 }}</p>
+          <ul class="list-unstyled">
+            {% if package.feature1 %}
+            <li>✔ {{ package.feature1 }}</li>
+            {% endif %} {% if package.feature2 %}
+            <li>✔ {{ package.feature2 }}</li>
+            {% endif %} {% if package.feature3 %}
+            <li>✔ {{ package.feature3 }}</li>
+            {% endif %} {% if package.feature4 %}
+            <li>✔ {{ package.feature4 }}</li>
+            {% endif %} {% if package.feature5 %}
+            <li>✔ {{ package.feature5 }}</li>
             {% endif %}
-          </div>
+          </ul>
+          <p class="mt-2">
+            <strong>Ideal for:</strong> {{ package.ideal_for }}
+          </p>
+          <p><strong>Price:</strong> ${{ package.price }}</p>
+          <!-- Buy Now button -->
+          {% if user.is_authenticated %}
+          <form method="post" action="{% url 'start_checkout' package.id %}">
+            {% csrf_token %}
+            <button class="btn btn-fe">Buy Now</button>
+          </form>
+          {% else %}
+          <a
+            href="{% url 'account_login' %}?next={% url 'who_is_paying' package.id %}"
+            class="btn btn-fe text-warning"
+          >
+            Sign up to Buy
+          </a>
+          {% endif %}
+          <!-- Enable site admins to edit/delete packages from front end -->
+          {% if request.user.is_staff %}
+          <hr />
+          <a
+            href="{% url 'edit_package' package.id %}"
+            class="btn btn-db bg-warning border-0 text-dark me-1"
+            >Edit</a
+          >
+          <a
+            href="{% url 'delete_package' package.id %}"
+            class="btn btn-db bg-danger border-0 text-white"
+            >Delete</a
+          >
+          {% endif %}
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
 </div>

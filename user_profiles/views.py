@@ -6,6 +6,7 @@ from django.contrib import messages
 from checkout.models import Purchase
 from tutoring_sessions.models import TutoringSession
 
+
 @login_required
 def user_profile(request):
     # Ensure the profile exists
@@ -16,7 +17,7 @@ def user_profile(request):
         return render(request, 'user_profiles/admin_dashboard.html')
     elif request.user.userprofile.is_tutor:
         return render(request, 'user_profiles/tutor_dashboard.html')
-    
+
     is_editing = request.GET.get('edit') == '1'
 
     if request.method == 'POST':
@@ -35,8 +36,10 @@ def user_profile(request):
     show_form = is_editing or is_incomplete
 
     # Fetch dashboard data
-    purchases = Purchase.objects.filter(user=request.user).order_by('-purchased_on')
-    sessions = TutoringSession.objects.filter(user=request.user).order_by('-session_datetime')
+    purchases = Purchase.objects.filter(
+        user=request.user).order_by('-purchased_on')
+    sessions = TutoringSession.objects.filter(
+        user=request.user).order_by('-session_datetime')
     total_sessions_available = profile.get_total_sessions_available()
 
     return render(request, 'user_profiles/user_profile.html', {
@@ -47,4 +50,4 @@ def user_profile(request):
         'purchases': purchases,
         'sessions': sessions,
         'total_sessions_available': total_sessions_available,
-})
+    })

@@ -7,7 +7,8 @@ from user_profiles.models import Subject
 
 class PurchaseModelTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='buyer', password='pass123')
+        self.user = User.objects.create_user(
+            username='buyer', password='pass123')
         self.package = Package.objects.create(
             name='Pro', description='Advanced', price=150.0, num_sessions=10
         )

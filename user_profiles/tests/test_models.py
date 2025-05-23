@@ -9,11 +9,13 @@ from django.test import TestCase
 class UserProfileMethodTest(TestCase):
     def setUp(self):
         # Create user and profile
-        self.user = User.objects.create_user(username='student1', password='test123')
+        self.user = User.objects.create_user(
+            username='student1', password='test123')
         self.profile = self.user.userprofile
 
         # Create a second user to act as the one who logs the sessions
-        self.logger = User.objects.create_user(username='tutor1', password='pass456')
+        self.logger = User.objects.create_user(
+            username='tutor1', password='pass456')
 
         # Create package and purchase
         self.package = Package.objects.create(

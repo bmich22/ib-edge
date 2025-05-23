@@ -1,30 +1,24 @@
-{% extends "base.html" %}
-{% load custom_filters %}
-{% block content %}
-<div class="container w-100 mt-5" style="max-width: 85%;">
+{% extends "base.html" %} {% load custom_filters %} {% block content %}
+<div class="container w-100 mt-5" style="max-width: 85%">
   <!-- Display student name -->
-  <span>
-    <h4>
-      Student:
-      <strong>
-      {% if user.userprofile and user.userprofile.first_name and user.userprofile.last_name %} 
-        {{ user.userprofile.first_name }} {{user.userprofile.last_name }}
-      {% else %}
-        {{ user.username }} 
-      {% endif%}
-      </strong>
-    </h4>
+  <span class="h4">
+    Student:
+    <strong>
+      {% if user.userprofile and user.userprofile.first_name and
+      user.userprofile.last_name %} {{ user.userprofile.first_name }}
+      {{user.userprofile.last_name }} {% else %} {{ user.username }} {% endif%}
+    </strong>
   </span>
   {% if show_form %}
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-      {% if is_editing %}
-        <a href="{% url 'user_profile' %}" class="btn btn-secondary">Cancel</a>
-      {% endif %}
-    </form>
+  <form method="post">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    {% if is_editing %}
+    <a href="{% url 'user_profile' %}" class="btn btn-secondary">Cancel</a>
+    {% endif %}
+  </form>
   {% else %}
-    <p>Your profile is up to date.</p>
+  <p>Your profile is up to date.</p>
   {% endif %}
   <hr />
 
@@ -36,17 +30,18 @@
           <h5 class="card-title">Total Sessions Available</h5>
           <p class="display-6 text-primary">{{ total_sessions_available }}</p>
           {% if user.userprofile.subjects.exists %}
-            <p class="mb-0">Your subjects:</p>
-            <ul class="list-unstyled mb-0">
-              {% for subject in user.userprofile.subjects.all %}
-                <li class="mb-0">{{ subject.name }}</li>
-              {% endfor %}
-            </ul>
+          <p class="mb-0">Your subjects:</p>
+          <ul class="list-unstyled mb-0">
+            {% for subject in user.userprofile.subjects.all %}
+            <li class="mb-0">{{ subject.name }}</li>
+            {% endfor %}
+          </ul>
           {% endif %}
-            <hr />
+          <hr />
           {% if total_sessions_available > 0 %}
           <a href="https://calendly.com/" class="btn btn-fe" target="_blank">
-            Book Session</a>
+            Book Session</a
+          >
           {% endif %}
         </div>
       </div>
@@ -61,18 +56,22 @@
           <div style="max-height: 300px; overflow-y: auto">
             <ul class="list-group list-group-flush">
               {% for session in sessions %}
-                <li class="list-group-item fs-75 py-0">
-                  <div>
-                    <strong>{{ session.session_datetime|date:"F j, Y, g:i A" }}</strong>
-                  </div>
-                  <small class="text-muted"
-                    >Logged by {{session.logged_by.get_full_name|default:session.logged_by.username}}</small>
-                </li>
+              <li class="list-group-item fs-75 py-0">
+                <div>
+                  <strong
+                    >{{ session.session_datetime|date:"F j, Y, g:i A" }}</strong
+                  >
+                </div>
+                <small class="text-muted"
+                  >Logged by
+                  {{session.logged_by.get_full_name|default:session.logged_by.username}}</small
+                >
+              </li>
               {% endfor %}
             </ul>
           </div>
           {% else %}
-            <p class="text-muted">No sessions used yet.</p>
+          <p class="text-muted">No sessions used yet.</p>
           {% endif %}
         </div>
       </div>
@@ -84,30 +83,35 @@
         <div class="card-body">
           <h5 class="card-title">Your Purchases</h5>
           {% if purchases %}
-            <div style="max-height: 300px; overflow-y: auto">
-              {% for purchase in purchases %}
-                <div class="mb-3">
-                <p class="mb-1 fs-75">
-                <strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F j, Y" }}
-                </p>
-                <p class="mb-1 fs-75">
-                  <strong>Package:</strong> {{ purchase.package.name }}
-                </p>
-                <p class="mb-1 fs-75">
-                  <strong>Sessions Purchased:</strong> {{purchase.package.num_sessions }} - {{purchase.subject_choice }}
-                </p>
-                <p class="mb-1 fs-75">
-                  <strong>Expires On:</strong> {{ purchase.expires_on|date:"F j, Y" }}
-                </p>
-                <hr/>
-                </div>
-              {% endfor %}
+          <div style="max-height: 300px; overflow-y: auto">
+            {% for purchase in purchases %}
+            <div class="mb-3">
+              <p class="mb-1 fs-75">
+                <strong>Purchased On:</strong> {{ purchase.purchased_on|date:"F
+                j, Y" }}
+              </p>
+              <p class="mb-1 fs-75">
+                <strong>Package:</strong> {{ purchase.package.name }}
+              </p>
+              <p class="mb-1 fs-75">
+                <strong>Sessions Purchased:</strong>
+                {{purchase.package.num_sessions }} - {{purchase.subject_choice
+                }}
+              </p>
+              <p class="mb-1 fs-75">
+                <strong>Expires On:</strong> {{ purchase.expires_on|date:"F j,
+                Y" }}
+              </p>
+              <hr />
             </div>
+            {% endfor %}
+          </div>
           {% else %}
-            <p class="text-muted">No packages found.</p>
-            <p class="text-warning">You don’t have a tutoring package yet.</p>
-            <a href="{% url 'packages' %}" class="btn btn-fe btn-sm"
-              >See Packages</a>
+          <p class="text-muted">No packages found.</p>
+          <p class="text-warning">You don’t have a tutoring package yet.</p>
+          <a href="{% url 'packages' %}" class="btn btn-fe btn-sm"
+            >See Packages</a
+          >
           {% endif %}
         </div>
       </div>
@@ -115,4 +119,3 @@
   </div>
 </div>
 {% endblock %}
-

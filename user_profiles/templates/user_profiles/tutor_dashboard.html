@@ -1,17 +1,19 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container w-100 mt-5" style="max-width: 85%;">
-    <h2>Tutor Dashboard</h2>
-    <p>Welcome, {{ user.username }}. You are logged in as a tutor.</p>
-    <ul>
-        <li class="mb-2">
-            <a href="{% url 'log_tutoring_session' %}">Log a Tutoring Session</a</li>
-        <li class="mb-2">
-            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer">View Your Schedule</a>
-        </li>
-        <li class="mb-2">
-            <a href="">View Assigned Students (coming soon!)</a>
-        </li>
-    </ul>
-  </div>
+{% extends "base.html" %} {% block content %}
+<div class="container w-100 mt-5" style="max-width: 85%">
+  <h2>Tutor Dashboard</h2>
+  <p>Welcome, {{ user.username }}. You are logged in as a tutor.</p>
+  <ul>
+    <li class="mb-2">
+      <a href="{% url 'log_tutoring_session' %}">Log a Tutoring Session</a>
+    </li>
+    <li class="mb-2">
+      <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer"
+        >View Your Schedule</a
+      >
+    </li>
+    <li class="mb-2">
+      <a href="">View Assigned Students (coming soon!)</a>
+    </li>
+  </ul>
+</div>
 {% endblock %}

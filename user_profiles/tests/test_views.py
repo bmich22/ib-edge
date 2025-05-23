@@ -9,7 +9,8 @@ class UserProfileViewTests(TestCase):
         self.client = Client()
 
     def test_student_sees_user_profile_template(self):
-        student = User.objects.create_user(username='student', password='pass123')
+        student = User.objects.create_user(
+            username='student', password='pass123')
         self.client.login(username='student', password='pass123')
         response = self.client.get(reverse('user_profile'))
         self.assertTemplateUsed(response, 'user_profiles/user_profile.html')
@@ -23,7 +24,8 @@ class UserProfileViewTests(TestCase):
         self.assertTemplateUsed(response, 'user_profiles/tutor_dashboard.html')
 
     def test_admin_sees_admin_dashboard_template(self):
-        admin = User.objects.create_superuser(username='admin', password='pass123', email='admin@example.com')
+        admin = User.objects.create_superuser(
+            username='admin', password='pass123', email='admin@example.com')
         self.client.login(username='admin', password='pass123')
         response = self.client.get(reverse('user_profile'))
         self.assertTemplateUsed(response, 'user_profiles/admin_dashboard.html')
@@ -33,7 +35,8 @@ class UserProfileViewTests(TestCase):
         self.assertTrue(UserProfile.objects.filter(user=user).exists())
 
     def test_profile_form_updates_data(self):
-        user = User.objects.create_user(username='formuser', password='pass123')
+        user = User.objects.create_user(
+            username='formuser', password='pass123')
         self.client.login(username='formuser', password='pass123')
 
         update_data = {
@@ -44,7 +47,8 @@ class UserProfileViewTests(TestCase):
         }
 
         response = self.client.post(reverse('user_profile'), data=update_data)
-        self.assertRedirects(response, reverse('user_profile'))  # on success, it redirects
+        # on success, it redirects
+        self.assertRedirects(response, reverse('user_profile'))
 
         profile = UserProfile.objects.get(user=user)
         self.assertEqual(profile.first_name, 'Updated')

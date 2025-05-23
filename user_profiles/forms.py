@@ -6,4 +6,5 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = fields = ['first_name', 'last_name', 'grade_year', 'parent_email']
+        fields = fields = ['first_name', 'last_name',
+                           'grade_year', 'parent_email']

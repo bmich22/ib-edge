@@ -15,12 +15,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='purchase',
             name='customer_email',
-            field=models.EmailField(default='placeholder@example.com', max_length=254),
+            field=models.EmailField(
+                default='placeholder@example.com', max_length=254),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='purchase',
             name='subject_choice',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='user_profiles.subject'),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='user_profiles.subject'),
         ),
     ]

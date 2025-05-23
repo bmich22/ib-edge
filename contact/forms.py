@@ -3,7 +3,7 @@ from .models import ContactMessage
 
 
 class ContactForm(forms.ModelForm):
-# Honeypot field (form spam protection, not included in Meta)
+    # Honeypot field (form spam protection)
     bot_field = forms.CharField(
         required=False,
         widget=forms.HiddenInput,

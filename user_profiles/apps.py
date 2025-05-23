@@ -8,4 +8,3 @@ class UserProfilesConfig(AppConfig):
 
     def ready(self):
         import user_profiles.signals
-    

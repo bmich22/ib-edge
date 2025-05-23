@@ -1,7 +1,5 @@
 from django.db import models
 
-# Package that a student can purchase
-
 
 class Package(models.Model):
     name = models.CharField(max_length=100)
@@ -22,4 +20,3 @@ class Package(models.Model):
 
     def __str__(self):
         return self.name
-

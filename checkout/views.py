@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)  # new
 
 
 def checkout(request):
-    """ A view to return the checkout page """   
+    """ A view to return the checkout page """
     return render(request, 'checkout/checkout.html')
 
 
@@ -39,11 +39,12 @@ def who_is_paying(request, package_id):
         selected_subject = form.cleaned_data['subject_choice']
         request.session['subject_id'] = selected_subject.id
         return redirect('start_checkout', package_id=package.id)
-    
+
     return render(request, 'checkout/who_is_paying.html', {
         'form': form,
         'package': package
     })
+
 
 @login_required
 def start_checkout(request, package_id):
@@ -57,11 +58,13 @@ def start_checkout(request, package_id):
 
     # Validate session state
     if not customer_email or not subject_id:
-        messages.error(request, "Please enter buyer's email and select a subject before checkout.")
+        messages.error(
+            request, "Please enter buyer's email \
+                and select a subject before checkout.")
         request.session.pop('customer_email', None)
         request.session.pop('subject_id', None)
         return redirect('who_is_paying', package_id=package.id)
-    
+
     # Store package info for success view
     request.session['purchased_package_id'] = package.id
     request.session.modified = True
@@ -83,16 +86,18 @@ def start_checkout(request, package_id):
             customer_email=customer_email,
             payment_intent_data={
                 'metadata': {
-                'user_id': str(request.user.id),
-                'package_id': str(package.id),
-                'subject_id': str(subject_id),
-                'customer_email': customer_email,
+                    'user_id': str(request.user.id),
+                    'package_id': str(package.id),
+                    'subject_id': str(subject_id),
+                    'customer_email': customer_email,
                 }
             }
         )
     except Exception as e:
         logger.error(f" Stripe session creation failed: {e}")
-        messages.error(request, "There was a problem connecting to Stripe. Please try again.")
+        messages.error(
+            request, "There was a problem connecting to Stripe. \
+                Please try again.")
         return redirect('who_is_paying', package_id=package.id)
 
     request.session['stripe_checkout_id'] = session.id
@@ -104,7 +109,8 @@ def start_checkout(request, package_id):
 @login_required
 def checkout_success(request):
     # Extract what you need before clearing
-    purchase = Purchase.objects.filter(user=request.user).order_by('-purchased_on').first()
+    purchase = Purchase.objects.filter(
+        user=request.user).order_by('-purchased_on').first()
     package = purchase.package if purchase else None
 
     # Now clear all relevant session keys

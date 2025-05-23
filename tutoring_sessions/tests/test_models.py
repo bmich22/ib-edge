@@ -6,8 +6,10 @@ from datetime import datetime
 
 class TutoringSessionModelTest(TestCase):
     def test_str_method(self):
-        student = User.objects.create_user(username='student1', password='pass123')
-        tutor = User.objects.create_user(username='tutor1', password='pass123')
+        student = User.objects.create_user(
+            username='student1', password='pass123')
+        tutor = User.objects.create_user(
+            username='tutor1', password='pass123')
 
         session = TutoringSession.objects.create(
             user=student,

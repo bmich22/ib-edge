@@ -19,11 +19,13 @@ def log_tutoring_session(request):
     if request.method == 'POST':
         form = LogSessionForm(request.POST)
         if form.is_valid():
-            profile = form.cleaned_data['student']  # This is a UserProfile
+            profile = form.cleaned_data['student']
             session_date = form.cleaned_data['session_date']
             session_time = form.cleaned_data['session_time']
-            session_time_obj = datetime.strptime(session_time, "%H:%M:%S").time()
-            session_datetime = make_aware(datetime.combine(session_date, session_time_obj))
+            session_time_obj = datetime.strptime(
+                session_time, "%H:%M:%S").time()
+            session_datetime = make_aware(
+                datetime.combine(session_date, session_time_obj))
             notes = form.cleaned_data['notes']
 
             TutoringSession.objects.create(
@@ -34,12 +36,15 @@ def log_tutoring_session(request):
             )
 
             # Decrement student session count
-            profile.total_sessions_available = max(0, profile.total_sessions_available - 1)
+            profile.total_sessions_available = max(
+                0, profile.total_sessions_available - 1)
             profile.save()
 
-            messages.success(request, f"Session logged for {profile.user.username}")
+            messages.success(
+                request, f"Session logged for {profile.user.username}")
             return redirect('log_tutoring_session')
     else:
         form = LogSessionForm()
 
-    return render(request, 'tutoring_sessions/log_session.html', {'form': form})
+    return render(
+        request, 'tutoring_sessions/log_session.html', {'form': form})

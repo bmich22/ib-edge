@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='tutoringsession',
             name='user',
-            field=models.ForeignKey(default=4, on_delete=django.db.models.deletion.CASCADE, related_name='tutoring_sessions', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(default=4, on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='tutoring_sessions', to=settings.AUTH_USER_MODEL),
         ),
     ]

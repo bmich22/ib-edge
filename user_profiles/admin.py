@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Subject, UserProfile
 
+
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = (
@@ -11,7 +12,7 @@ class UserProfileAdmin(admin.ModelAdmin):
         'total_sessions_available',
         'grade_year',
         'subject_list',
-        'is_tutor', 
+        'is_tutor',
         'user_is_staff',
     )
     list_filter = ('is_tutor', 'user__is_staff', 'subjects')
@@ -44,6 +45,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     def subject_list(self, obj):
         return ", ".join(subject.name for subject in obj.subjects.all())
     subject_list.short_description = 'Subjects'
+
 
 @admin.register(Subject)
 class Subject(admin.ModelAdmin):
