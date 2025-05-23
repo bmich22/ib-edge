@@ -36,14 +36,14 @@ MODELS
 | **Packages Page** The packages page displays the three packages on offer, bronze, silver and gold level.  Users can purchase a package via the button at the bottom of each package.  If site visitors try to buy they will be routed to sign up first. |  ![image](/media/readme-images/packages-large-screen.png) 
 | **Contact Page** The contact page displays a simple contact form that visitors can fill in name, email and message and send to the site admin. Messages are stored in a database.  Any site visitor can send a message via the contact form.  The contact form has a honey pot field for spam protection |  ![mobile-utility](/media/readme-images/packages-large-screen.png) 
 | **Authentication and Authorization** The site utilizes django-allauth for secure registration, login, and logout. Styles are supported by Crispy Forms and Bootstrap.  | ![image](/media/readme-images/auth-forms.jpg)
-| **CUSTOME USER PROFILE MODEL** A custom UserProfile model includes role flags (e.g., is_tutor, is_superuser) to manage access. Views are protected based on user roles, with session-based state reflected in the navbar and dashboard, and URL access is restricted using @login_required and role-specific checks. |
+| **USER PROFILE MODEL** A custom UserProfile model includes role flags (e.g., is_tutor, is_superuser) to manage access. Views are protected based on user roles, with session-based state reflected in the navbar and dashboard, and URL access is restricted using @login_required and role-specific checks. |
 | **Student Dashboard** The student dashboard has three columns.  Column one shows the number of sessions they have available, this number is calculated by the number of sessions purchased minus sessions logged by a tutor.  If the student has sessions available, the 'book session' button will display and the student will be able to go to the tutor's calendar to book a session (this is an upcoming feature). Column two lists the tutoring sessions that have been completed, this is triggered by the tutor filling in the 'log session' form. Column three shows a list of packages purchased, the date, subject and expiration date. | ![image](/media/readme-images/student-dashboard.png)
 | **Tutor Dashboard** The tutor dashboard has links to utility features, most importantly the log session form. Future features are a functioning link to their calendly to check their calendar, a link to view current students. |![tutor-dashboard](/media/readme-images/tutor-dashboard.png)
 | **Admin Dashboard** The admin dashboard has links to utility features, most importantly, the link to the admin panel so  the site administrator doesn't have to sign in to the admin panel separately. Site admins can also log a tutoring session, they can check contact message via the link that will take them direct to the contact messages in the admin panel. There is also a link to add/edit/delete the Packages and they can also add a tutor |![admin-dashboard](/media/readme-images/admin-dashboard.png)
 | **CRUD** 
 | **User Profile Form** After sign up the user is taken to the user profile where they are asked to fill in their first and last names, their grade level and a parent's email.  This form can be editied by clicking on the EDIT PROFILE button next to the welcome message.  | ![image](/media/readme-images/edit-user-profile.png)
 **Admin Add/Edit/Delete Package Form** When the site administrator is signed in, they can add, edit or delete any package directly on the packages page.  | ![image](/media/readme-images/admin-edit-packages.png)
-**Tutor Log Session Form** The tutor can access the log session form via their dashboard. In the form the tutor can choose the student name from the drop-down list, click on the calendar for the date of the session, choose a time from the drop-down list, enter notes about the session (not mandatory) and then click the log session button. The tutor will see a confirmation message in their window that the session has been logged. This is entered into the session database and triggers a calculation of the total sessions remaining for this student.  In the student's user profile this will be updated showing the number sessions remaining, and a list of the sessions logged and by which tutor.   | ![image](/media/readme-images/tutor-log-session.png) ![image](/media/readme-images/update-total-sessions.png)
+**Tutor Log Session Form** The tutor can access the log session form via their dashboard. In the form the tutor can choose the student name from the drop-down list, click on the calendar for the date of the session, choose a time from the drop-down list, enter notes about the session (not mandatory) and then click the log session button. The tutor will see a confirmation message in their window that the session has been logged. This is entered into the session database and triggers a calculation of the total sessions remaining for this student.  In the student's user profile this will be updated showing the number sessions remaining, and a list of the sessions logged and by which tutor.   | ![image](/media/readme-images/tutor-log-session.png) ![image](/media/readme-images/update-total-sessions.jpg)
 | **eCommerce** The application incorporates e-commerce features using Stripe Checkout for secure package payments. A  session counter reflects purchased sessions in real time, while Stripe webhooks ensure user accounts are updated accurately after each transaction. Upon successful payment, the user-profile page displays a confirmation message and the customer email (entered before purchase) receives an email confirmation. There is error handling built in to ensure that if a student hits the back button or leaves the page, the session goes back to parent email page and starts again.  Here the student must also choose a subject from the drop-down list.  These two entries must be filled in before going forward to the Stripe checkout page.| ![image](/media/readme-images/purchase-process-success.png)
 
 ### Marketing and SEO
@@ -51,31 +51,31 @@ MODELS
 | ---- | ----
 | Email Marketing with Mailchimp Embedded Sign-Up Form | ![image](/media/readme-images/mailchimp-signup-and-verify.png)
 | Facebook Business Page (mockup) | ![image](/media/readme-images/facebook-page.jpg)
-| Keywords were used, mainly "IB Tutors, Expert IB Tutors and IB Tutoring".  There is a title tag on base.htlm with 'tutoring' and 'IB'.  Meta tags in the head include "IB tutoring, IB English tutor, IB Math HL, IB Physics HL, Extended Essay help, TOK tutoring, online IB tutor, IB exam prep, university IB tutors, affordable IB tutoring".  Hidden H1 tags are on each page (except contact) with "IB Tutoring in English, Math, Physics, EE & TOK". | ![image](/media/readme-images/keywords-terms-seo.png)
+| Keywords were used, mainly "IB Tutors", "Expert IB Tutors" and "IB Tutoring".  There is a title tag on base.html with 'tutoring' and 'IB'.  Meta tags in the head include "IB tutoring, IB English tutor, IB Math HL, IB Physics HL, Extended Essay help, TOK tutoring, online IB tutor, IB exam prep, university IB tutors, affordable IB tutoring".  Hidden H1 tags are on each page (except contact) with "IB Tutoring in English, Math, Physics, EE & TOK". | ![image](/media/readme-images/keywords-terms-seo.png)
 
 ### Fixes and bugs
 The booking system is not connected to any real Calendy accounts.
 
-There is a runtime warning on the log_sessions form. "RuntimeWarning (I did not fix): DateTimeField TutoringSession.session_datetime received a naive datetime. This means you're using datetime.combine(...) to build a datetime object without timezone info (naive datetime) while Django has USE_TZ = True.It’s not breaking anything now, but for production-quality code, you should use timezone-aware datetime like this: session_datetime = make_aware(datetime.combine(session_date, session_time_obj))"
+There is a runtime warning on the log_sessions form. "RuntimeWarning (I did not fix): DateTimeField TutoringSession.session_datetime received a naive datetime. This means you're using datetime.combine(...) to build a datetime object without timezone info (naive datetime) while Django has USE_TZ = True.It’s not breaking anything now, but for production-quality code, you should use timezone-aware datetime like this: session_datetime = make_aware(datetime.combine(session_date, session_time_obj))".
 
 
 ### Future Features
-**Enhance Email Confirmations**
-On the email confirmation sent to buyer/parent, an upgrade would be to add the first and last name of the student. Also, a confirmation email should also be sent to student email (currently only buyer/parent email gets confirmation).
+**Enhance email confirmations**
+On the email confirmation sent to buyer/parent, an upgrade would be to add the first and last name of the student. Also, a confirmation email should be sent to the student email (currently only buyer/parent email gets confirmation).
 
-**Integrated Booking and Video Call System**
+**Integrated booking and video call system**
 Currently the students will book via the tutor's Calendly. An upgrade would be a system that is integrated where the student can also sign in and onto the sessions, all via the IN EDGE site.
 
-**Give Tutors access to sessions adamin panel**
+**Give tutors access to sessions admin panel**
 Tutors should have access to the sessions admin panel so they can see notes from former sessions.
 
-**Calculate Hours Worked**
+**Calculate hours worked**
 Tutors should be able to invoice based on the complete sessions.
 
-**Fix Runtime Error on Log Sessions Form**
+**Fix runtime error on log sessions form**
 The session_datetime should be set to a base time zone.
 
-**Free Download and Links**
+**Free download and links**
 Add a tab to the navbar so students can find study tips and subject-focused notes to download.  This area would also have links to other IB related sites.
 
 ### Tools and Technologies Used
@@ -103,7 +103,7 @@ Add a tab to the navbar so students can find study tips and subject-focused note
 | [Autopep 8](https://pypi.org/project/autopep8/) | A Python code formatter that ensures consistent code style by automatically formatting code according to best practices. Used inside VS Code.
 |[Gunicorn==20.1.0](https://gunicorn.org/) | A Python WSGI HTTP server used to serve web applications built with Django and acts as intermediary with Heroku.
 
-### Automated Testing Manual
+### Automated Testing
 
 ![image](/media/readme-images/testing-user-profile-model.png) |
 ![image](/media/readme-images/testing-checkout-app.png) |
@@ -111,7 +111,7 @@ Add a tab to the navbar so students can find study tips and subject-focused note
 
 ### Manual Testing 
 Continuous manual testing was performed as features were added to the project to ensure forms were loading and data was processed to and from the database. Responsiveness was tested inside Google Chrome Dev Tools to ensure the site is visually pleasing on all screen sizes. In addition, the HTML, CSS, and Python were run through linters to ensure clean, consistent, error-free code. The outcomes are below.
-| Checking | Screenshot
+| Test | Screenshot
 | ---- | ----------
 **Sign Up Process -  Success**  | ![image](/media/readme-images/test-signup-success.png) |
 **Sign Up Error Handling and Profile Update**  | ![image](/media/readme-images/manual-test-1.jpg) |
@@ -125,10 +125,11 @@ Continuous manual testing was performed as features were added to the project to
 |[W3C HTML Validator](https://validator.w3.org/) | All .html documents were run through the validator. | 
 [W3C HTML Validator](https://jigsaw.w3.org/css-validator/) | No errors on base.css. |
 
-| File        | [HTML Validator](https://validator.w3.org/) | [PEP8](https://pep8ci.herokuapp.com/) |
-| ----------- | ------------------------------------------- | ------------------------------------- |
-| `base.css`  | no errors                                   |                                       |
-| `base.html` | flags Django template tags, otherwise clear |                                       |
+| File            | [HTML Validator](https://validator.w3.org/) | [PEP8](https://pep8ci.herokuapp.com/) |
+| --------------- | ------------------------------------------- | ------------------------------------- |
+| `base.css`      | no errors                                   |                                       |
+| `base.html`     | flags Django template tags, otherwise clear |                                       |
+| `settings.py`   |                                       | line too long on auth password validator
 | CHECKOUT APP             | HTML                                        | PEP8                                                         |
 | ------------------------ | ------------------------------------------- | ------------------------------------------------------------ |
 | `checkout_cancel.html`   | flags Django template tags, otherwise clear |                                                              |
