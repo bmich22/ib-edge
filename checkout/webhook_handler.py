@@ -37,9 +37,8 @@ class StripeWebhookHandler:
             if not all([user_id, package_id, subject_id, customer_email]):
                 return HttpResponse("Missing metadata", status=200)
 
-            if not Purchase.objects.filter
-                (stripe_payment_intent=stripe_payment_intent).exists():
-                purchase = Purchase.objects.create(
+            if not Purchase.objects.filter(stripe_payment_intent=stripe_payment_intent).exists():
+                    purchase = Purchase.objects.create(
                     user=user,
                     package=package,
                     customer_email=customer_email,
@@ -49,13 +48,13 @@ class StripeWebhookHandler:
                     stripe_payment_intent=stripe_payment_intent,
                     payment_status='paid',
                 )
-                try:
-                    profile.total_sessions_available += package.num_sessions
-                    profile.save()
-                    profile.subjects.add(subject_choice)
-                    profile.total_sessions_available)
-                except Exception as e:
-                    print(f"Failed to update profile session count: {e}")
+                    try:
+                        profile.total_sessions_available += package.num_sessions
+                        profile.save()
+                        profile.subjects.add(subject_choice)
+                        profile.total_sessions_available
+                    except Exception as e:
+                        print(f"Failed to update profile session count: {e}")
 
         except Exception as e:
             import traceback

@@ -13,5 +13,7 @@ class TutoringSession(models.Model):
     logged_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} — \
-               f"{self.session_datetime.strftime('%b %d, %Y %I:%M %p')}"
+        return (
+            f"{self.user.username} — "
+            f"{self.session_datetime.strftime('%b %d, %Y %I:%M %p')}"
+        )

@@ -33,5 +33,4 @@ class LogSessionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['student'].label_from_instance = lambda profile:
-            f"{profile.last_name}, {profile.first_name} ({profile.user.email})"
+        self.fields['student'].label_from_instance = lambda profile:f"{profile.last_name}, {profile.first_name} ({profile.user.email})"
